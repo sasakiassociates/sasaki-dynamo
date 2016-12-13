@@ -1,0 +1,102 @@
+<Workspace Version="1.2.1.3083" X="-610.886105971611" Y="115.576497694405" zoom="1.04850666193807" Name="AddWorksets" Description="Add standards worksets to central file and set their default visibility setting&#xD;&#xA;&#xD;&#xA;Input&#xD;&#xA; &quot;Activate&quot;: bool. Set to true to run the node&#xD;&#xA;   default value: &quot;false&quot;&#xD;&#xA;  optional: -&#xD;&#xA;&#xD;&#xA; &quot;AddWorksets&quot;: {{string,bool}, {string, bool}}. List of worksets to add to the central file and their corresponding default visibility setting. Example: {{WorksetName, true}, {WorksetName, false}}&#xD;&#xA;  default value: Embedded in the node (SA standard worsets)&#xD;&#xA;  optional: -&#xD;&#xA;&#xD;&#xA;Output&#xD;&#xA; &quot;NewWorksets&quot;: {string}. Worksets successfully added to the central file. The node will only add worksets that are not existing yet&#xD;&#xA;  optional: -&#xD;&#xA;" ID="bfb094a5-af8a-4863-bbd2-6502199ec0d2" Category="Sasaki">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="List" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="8241dbd6-84ad-40c6-822c-0ddf92974fed" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1115.67225821191" y="100.857631994822" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="NewWorksets" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <PythonNodeModels.PythonNode guid="d5c31ced-41a4-4812-93f7-0e5f9c25de1e" type="PythonNodeModels.PythonNode" nickname="Python Script" x="934.247142257795" y="74.6495805667621" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+import Autodesk
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+
+###
+activate = IN[0]
+if IN[1] is None:
+	add_worksets = [["Shared Levels and Grids", "True"],
+				   ["Structure","True"],
+				   ["Core and Vertical Circulation","True"],
+				   ["Exterior Envelope","True"],
+				   ["Interiors","True"],
+				   ["RCP","True"],
+				   ["Slabs","True"],
+				   ["Furniture","False"],
+				   ["Site","False"],
+				   ["Rendering","False"],
+				   ["Finishes","False"]]
+			
+else:
+	add_worksets = IN[1]
+
+###
+existing_worksets = []
+new_worksets = []
+
+doc = DocumentManager.Instance.CurrentDBDocument
+
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+if activate:
+	coll = FilteredWorksetCollector(doc)
+	coll.OfKind(WorksetKind.UserWorkset)
+	
+	for c in coll:
+		existing_worksets.append(c.Name)
+		
+	for w in add_worksets:
+		if not w[0] in existing_worksets:
+			new_workset = Workset.Create(doc, w[0])
+			
+			if w[1] == "True":
+				w[1] = True
+			elif w[1] == "False":
+				w[1] = False
+			else:
+				w[1] = False
+				
+
+			defaultVisibility = WorksetDefaultVisibilitySettings.GetWorksetDefaultVisibilitySettings(doc)
+			defaultVisibility.SetWorksetVisibility(new_workset.Id, w[1])
+			
+			new_worksets.append(new_workset.Name)
+		
+TransactionManager.Instance.TransactionTaskDone()
+
+###
+
+OUT = new_worksets</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="bde93e84-e81c-4f23-851d-9db68fa4160d" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="628.40688749959" y="74.4458021331418" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Activate: bool = false" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="a7f47330-aac4-4a51-8f49-fded4720c313" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="628.461524107374" y="144.027401204589" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="AddWorksets: string[][] = null" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="d5c31ced-41a4-4812-93f7-0e5f9c25de1e" start_index="0" end="8241dbd6-84ad-40c6-822c-0ddf92974fed" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="bde93e84-e81c-4f23-851d-9db68fa4160d" start_index="0" end="d5c31ced-41a4-4812-93f7-0e5f9c25de1e" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a7f47330-aac4-4a51-8f49-fded4720c313" start_index="0" end="d5c31ced-41a4-4812-93f7-0e5f9c25de1e" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

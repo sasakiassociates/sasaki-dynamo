@@ -1,0 +1,75 @@
+<Workspace Version="1.2.1.3083" X="1938.40358339713" Y="-320.803589057355" zoom="0.863997589075693" Name="Home" Description="" RunType="Manual" RunPeriod="1000" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="List.map" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
+    <ClassMap partialName="List" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
+    <ClassMap partialName="Math" resolvedName="DSCore.Math" assemblyName="DSCoreNodes.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="09e324f9-3fd9-414e-bbba-e8a2471cdc7d" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="RenumberViewports" x="-1650.16106939116" y="623.311082311407" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <PortInfo index="3" default="False" />
+      <PortInfo index="4" default="False" />
+      <PortInfo index="5" default="False" />
+      <ID value="33e51004-a71c-40ca-b0a5-c292938f4c3c" />
+      <Name value="RenumberViewports" />
+      <Description value="Renumber Viewports on a Sheet" />
+      <Inputs>
+        <Input value="SheetNumber" />
+        <Input value="SortOrder" />
+        <Input value="Right Margin" />
+        <Input value="Left Margin" />
+        <Input value="Top Margin" />
+        <Input value="Bottom Margin" />
+      </Inputs>
+      <Outputs>
+        <Output value="Viewport Order" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <CoreNodeModels.Input.StringInput guid="475b556c-2f48-4907-9d09-b80c8c5b3780" type="CoreNodeModels.Input.StringInput" nickname="String" x="-1908.88130994553" y="609.712088665873" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.String>A6-03</System.String>
+      <System.String value="A6-03" />
+    </CoreNodeModels.Input.StringInput>
+    <CoreNodeModels.Input.StringInput guid="1044f346-46b0-4c55-bfaf-a485071ad5cf" type="CoreNodeModels.Input.StringInput" nickname="String" x="-1903.85352742861" y="718.987000536063" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.String>x</System.String>
+      <System.String value="x" />
+    </CoreNodeModels.Input.StringInput>
+    <CoreNodeModels.Watch guid="a43e731a-a150-41c4-8a10-e84a911fd39f" type="CoreNodeModels.Watch" nickname="Watch" x="-1303.8877765045" y="613.513840797722" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Watch>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="bab9dd6f-c948-4411-82a2-8a30cffe0b5c" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="-1915.84301126475" y="845.769030011396" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="0.36;&#xA;0.13;&#xA;0.04;&#xA;0.04;" ShouldFocus="false" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="09e324f9-3fd9-414e-bbba-e8a2471cdc7d" start_index="0" end="a43e731a-a150-41c4-8a10-e84a911fd39f" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="475b556c-2f48-4907-9d09-b80c8c5b3780" start_index="0" end="09e324f9-3fd9-414e-bbba-e8a2471cdc7d" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1044f346-46b0-4c55-bfaf-a485071ad5cf" start_index="0" end="09e324f9-3fd9-414e-bbba-e8a2471cdc7d" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="bab9dd6f-c948-4411-82a2-8a30cffe0b5c" start_index="0" end="09e324f9-3fd9-414e-bbba-e8a2471cdc7d" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="bab9dd6f-c948-4411-82a2-8a30cffe0b5c" start_index="1" end="09e324f9-3fd9-414e-bbba-e8a2471cdc7d" end_index="3" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="bab9dd6f-c948-4411-82a2-8a30cffe0b5c" start_index="2" end="09e324f9-3fd9-414e-bbba-e8a2471cdc7d" end_index="4" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="bab9dd6f-c948-4411-82a2-8a30cffe0b5c" start_index="3" end="09e324f9-3fd9-414e-bbba-e8a2471cdc7d" end_index="5" portType="0" />
+  </Connectors>
+  <Notes>
+    <Dynamo.Graph.Notes.NoteModel guid="296be4ae-0069-408c-a9fa-86c62b088b0b" text="SortOrder: either x or y as sort order&#xD;&#xA;x: sort view numebrs vertically (sasaki standard)&#xD;&#xA;y: sort view number horizontally (works better on elevation sheets)" x="-2218.38736790251" y="720.241275641872" />
+    <Dynamo.Graph.Notes.NoteModel guid="c5c02a7e-b537-4fdd-b985-bb7cd9c3a973" text="SheetNumber: sheet to be worked on, type in sheet number same as shown on the sheet" x="-2217.54499424689" y="621.481027799407" />
+    <Dynamo.Graph.Notes.NoteModel guid="ef1d72b7-0f6b-4112-8e52-3b4df36ceed6" text="Margins: right, left, top, bottom margins of title block, measured in feet.&#xD;&#xA;&#xD;&#xA;Sasaki Standard Title Block Margins are:&#xD;&#xA;Right: 0.36&#xD;&#xA;Left: 0.13&#xD;&#xA;Top: 0.04&#xD;&#xA;Bottom: 0.04" x="-2219.45138459808" y="848.801639713546" />
+  </Notes>
+  <Annotations>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="00452048-b2c6-471b-a490-20139e4b8bf7" annotationText="sheet number" left="-2227.54499424689" top="579.712088665873" width="393.66368430136" height="100.768939133534" fontSize="14" InitialTop="609.712088665873" InitialHeight="98" TextblockHeight="20" backgrouund="#FFC1D676">
+      <Models ModelGuid="475b556c-2f48-4907-9d09-b80c8c5b3780" />
+      <Models ModelGuid="c5c02a7e-b537-4fdd-b985-bb7cd9c3a973" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="1070a6e5-bcdf-46e9-a7d3-e147ff2e45aa" annotationText="sort order" left="-2228.38736790251" top="688.987000536063" width="395.5338404739" height="119.254275105809" fontSize="14" InitialTop="718.987000536063" InitialHeight="120.259904079017" TextblockHeight="20" backgrouund="#FFC1D676">
+      <Models ModelGuid="1044f346-46b0-4c55-bfaf-a485071ad5cf" />
+      <Models ModelGuid="296be4ae-0069-408c-a9fa-86c62b088b0b" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="2b7e5d40-3b18-4f3b-affb-55d68c707ce7" annotationText="title block margins" left="-2229.45138459808" top="815.769030011396" width="399.60837333333" height="178.03260970215" fontSize="14" InitialTop="845.769030011396" InitialHeight="232.349804121842" TextblockHeight="20" backgrouund="#FFC1D676">
+      <Models ModelGuid="bab9dd6f-c948-4411-82a2-8a30cffe0b5c" />
+      <Models ModelGuid="ef1d72b7-0f6b-4112-8e52-3b4df36ceed6" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+  </Annotations>
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>
