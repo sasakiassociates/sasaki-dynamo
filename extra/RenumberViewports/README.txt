@@ -14,26 +14,21 @@ Input
 			Top: 0.04
 			Bottom: 0.04
 Output
-	"ViewportOrder": 
-		List of Viewport Numbers: successfully update view numbers
-		List of "1"s: failed update view numbers**
+	"ViewportOrder": {{integer}} List of Viewport Numbers, i.e. successfully update view numbers
+	"Succeed": {bool} Successfully updated Viewport Numbers
 		
 Revit Version: >= 2016
 Dynamo Version: 1.2.1
 Dependent Packages (version number): custom node
-	Archi-lab (v2015.11.12)*: Get Builtin Parameter, Set Builtin Parameter
-	Hollandaise (v2015.12.23): Viewport.Pts, Sheet.GetViewports
+	Archi-lab (v2016.12.10, v2015.11.12)*: Get Builtin Parameter, Set Builtin Parameter
+	Hollandaise (v2015.12.23): Viewport.Pts
 
 Notes
-	*	Higher Version of Archi-lab package may cause issue in Dynamo versions previous to V1.2. If you have higher version of Archi-lab: 
+	*	If you prefer installing Hollandaise manually than just including package path H:\BIM\Dynamo\Official Release\sasaki-dynamo-dependency-master\nodes: 
+		Version of Archi-lab package higher than v2015.11.12 may cause issue when installing Hollandaise. If you have higher version of Archi-lab: 
 		1)uninstall Archi-lab under Packages>Manage Packages; 
 		2)restart Revit and Dynamo; 
-		3)install Hollandaise, Archi-lab (v2015.11.12) will be installed automatically.
-	**	If you get a list of "1"s as output, it may be caused by:
-		1)Packages are not installed correctly, please make sure all packages are in the correct version.
-		2)Some of the nodes are not activated.To manually activate it, double click on the custom node to open it, manually open the dyf file shown as red. Save and close.
-		  Downloaded dyf files could be found here: C:\Users\name\AppData\Roaming\Dynamo\0.9\packages
-		3)The custom node is not activated. To manually activate it, double click on the custom node to open it, unlink and relink any note. Save and close.
+		3)install Hollandaise, then Archi-lab (v2015.11.12) will be installed automatically.
 
 Tested Projects: 66013.00, 56173.00, 56295.00
 Reviewed By: Yuiying Cui
