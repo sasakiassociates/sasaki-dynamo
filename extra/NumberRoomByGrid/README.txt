@@ -3,28 +3,30 @@ Author: Yueying Cui
 Datetime: 05/19/2016
 
 Input
-	"Prefix": grid name prefix
+	"GridPrefix": grid name prefix
 		default value: ""
 		optional: have a special grid for room numbering, e.g. prefix by "_"
 	"Rooms": rooms to be updated
 		optional: apply filter to the room list
 	"LevelNumbers": the shortname to present the level name in the room number
 	"LevelNames": all level names
+	"GridOrder"
+		"vh": vertical grid firstly, then horizontal grid
+		"hv": horizontal grid firstly, then vertical grid
+	"LevelGridSeparator": separator between LevelNumber and GridNames
+	"GridXYSeparator": separator between vertical and horizonal Grids
 Output
 	"RoomsWithoutLocation": room(s) without location information, e.g. doesn't delete from the room schedule
 		optional: click the green ID to view the room in Revit
 	"RoomNumbers": successfully set room numbers
 
 Revit Version: >= 2015
-Dynamo Version: 0.9.1
+Dynamo Version: 1.2.1, 0.9.1
 Dependent Packages (version number): custom node
-	Archi-lab (v2016.2.1): Get Elements by Category/level
-	Clockwork for Dynamo (v0.9.x 0.90.5)
-	If Equal Return Index (v0.1.0): If Equal Return Index
-	LunchBox for Dynamo (v2015.11.28)
+	Archi-lab (v2016.12.10, v2016.2.1): Get Elements by Category/level
+	Clockwork for Dynamo (v1.0.2, v0.90.5)
+	LunchBox for Dynamo (v2017.2.12, v2015.11.28)
 	Rhythm (v2016.2.1)
-	If Null Replace with New Value (v0.0.1)
-	Phasing Stuff (v0.1.5)
 	Get To-From Room (v2.0.0)
 
 Tested Projects: 56170.00, 56192.02, 56295.00, 56173.00
