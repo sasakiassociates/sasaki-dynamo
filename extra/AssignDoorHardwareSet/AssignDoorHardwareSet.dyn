@@ -1,0 +1,113 @@
+<Workspace Version="1.3.0.875" X="339.833884901201" Y="589.143038985955" zoom="0.638961352726239" ScaleFactor="1" Name="Home" Description="" RunType="Manual" RunPeriod="1000" HasRunWithoutCrash="False">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="Element" resolvedName="Revit.Elements.Element" assemblyName="RevitNodes.dll" />
+    <ClassMap partialName="Autodesk.Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <CoreNodeModels.Watch guid="03d6022e-3b06-4b5c-8231-538b3ef726cc" type="CoreNodeModels.Watch" nickname="Watch" x="212.576440136631" y="106.950452128086" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Watch>
+    <CoreNodeModels.Watch guid="356ee849-64f7-4dc5-846c-246b77f39426" type="CoreNodeModels.Watch" nickname="Watch" x="811.360926318549" y="-210.894352277032" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Watch>
+    <CoreNodeModels.Input.Filename guid="dd99c0dd-d5fb-4c35-992f-4ccc662b6120" type="CoreNodeModels.Input.Filename" nickname="File Path - Select Excel File" x="-402.223472412303" y="-284.999458339368" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.String>H:\BIM\Dynamo\Beta Testing\_Archive\HardwareSet\HARDWARE SET.xlsx</System.String>
+      <HintPath>H:\BIM\Dynamo\Beta Testing\_Archive\HardwareSet\HARDWARE SET.xlsx</HintPath>
+    </CoreNodeModels.Input.Filename>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="ff87c220-a51e-4221-a096-ec0af15b9eea" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block - Remove Header Row" x="-323.208440153959" y="-114.406818446532" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="2;" ShouldFocus="false" />
+    <CoreNodeModels.Input.StringInput guid="9b8c43a3-1422-49ea-9ead-b245415cda52" type="CoreNodeModels.Input.StringInput" nickname="String - SET HARDWARE SET PARAMETER NAME" x="-411.844103931064" y="-24.1491842913736" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.String>HARDWARE SET</System.String>
+      <System.String value="HARDWARE SET" />
+    </CoreNodeModels.Input.StringInput>
+    <CoreNodeModels.Watch guid="3d4eba60-0ff7-4eb0-85dc-727907d6b43e" type="CoreNodeModels.Watch" nickname="Watch" x="468.657134859739" y="-146.185312160611" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Watch>
+    <CoreNodeModels.Input.StringInput guid="6525b8fe-76d9-4f91-8ced-11cfb0734872" type="CoreNodeModels.Input.StringInput" nickname="String - Excel Worksheet Name" x="-307.595743633881" y="-178.733850371849" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.String>Sheet1</System.String>
+      <System.String value="Sheet1" />
+    </CoreNodeModels.Input.StringInput>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="9b333534-3e9e-4647-a880-f9615954ee98" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="AssignDoorHardwareSet" x="-32.59499831418" y="-206.369343812799" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <PortInfo index="3" default="False" />
+      <ID value="a0a4f10c-e96a-4297-9671-42ce7f037ee3" />
+      <Name value="AssignDoorHardwareSet" />
+      <Description value="Assign the door hardware set in the Door Schedule from an Excel File" />
+      <Inputs>
+        <Input value="ExcelFilePath" />
+        <Input value="WorksheetName" />
+        <Input value="DropHeaderRows" />
+        <Input value="ParameterName" />
+      </Inputs>
+      <Outputs>
+        <Output value="DoormarksAndHardwareSets" />
+        <Output value="EmptySets" />
+        <Output value="AssignedHardwareSets" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="dd99c0dd-d5fb-4c35-992f-4ccc662b6120" start_index="0" end="9b333534-3e9e-4647-a880-f9615954ee98" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ff87c220-a51e-4221-a096-ec0af15b9eea" start_index="0" end="9b333534-3e9e-4647-a880-f9615954ee98" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="9b8c43a3-1422-49ea-9ead-b245415cda52" start_index="0" end="9b333534-3e9e-4647-a880-f9615954ee98" end_index="3" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6525b8fe-76d9-4f91-8ced-11cfb0734872" start_index="0" end="9b333534-3e9e-4647-a880-f9615954ee98" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="9b333534-3e9e-4647-a880-f9615954ee98" start_index="0" end="3d4eba60-0ff7-4eb0-85dc-727907d6b43e" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="9b333534-3e9e-4647-a880-f9615954ee98" start_index="1" end="356ee849-64f7-4dc5-846c-246b77f39426" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="9b333534-3e9e-4647-a880-f9615954ee98" start_index="2" end="03d6022e-3b06-4b5c-8231-538b3ef726cc" end_index="0" portType="0" />
+  </Connectors>
+  <Notes>
+    <Dynamo.Graph.Notes.NoteModel guid="aabcf0c6-6121-4930-842d-b8e4f807b84e" text="SCRIPT OUTPUT MIGHT INCLUDE DATA OR SIMPLY NOTIFICATION OF WHETHER THE SCRIPT RAN SUCCESSFULLY. HIGHLIGHTING THE OUTPUT OR FINAL STEP WILL HELP OTHER USERS TO QUICKLY IDENTIFY WHERE TO LOOK FOR RESULTS" x="900.391042189278" y="-485.193800087285" />
+    <Dynamo.Graph.Notes.NoteModel guid="642eecef-c3ac-470d-9374-354ebfbee5c3" text="DYNAMO PROCESS ORGANIZED AND GROUPED IN STEPS SO THAT OTHER USERS CAN UNDERSTAND THE LOGIC OF THE SCRIPT IN ORDER TO CUSTOMIZE THE SCRIPT OR REUSE PORTION OF THE LOGIC TO IMPLEMENT NEW WORKFLOWS" x="558.813992306648" y="-486.169016059116" />
+    <Dynamo.Graph.Notes.NoteModel guid="55c771a9-cf86-4ae2-a572-64845c6c7f29" text="SCRIPT OUTPUT" x="900.481150475688" y="-600.381438857375" />
+    <Dynamo.Graph.Notes.NoteModel guid="4693f4d1-1be1-48aa-b1b9-754f8cc2d26f" text="PROCESS DATA" x="560.792387069158" y="-601.356654829205" />
+    <Dynamo.Graph.Notes.NoteModel guid="e804bf12-d4f3-43d8-9643-2c9634696e04" text="SCRIPT INPUT REQUIRED TO RUN THE SCRIPT. THESE INCLUDE INPUTS THAT ARE LESS LIKEY TO CHANGE FOR OTHER USERS TO IMPLEMENT THE SCRIPT ON THEIR PROJECT" x="244.665876251888" y="-475.504248466685" />
+    <Dynamo.Graph.Notes.NoteModel guid="03cf93b7-4058-4f53-9d62-0db3b949516b" text="SECONDARY INPUT (OPTIONAL)" x="248.282715697138" y="-604.691887236775" />
+    <Dynamo.Graph.Notes.NoteModel guid="21bb0fde-34fc-407d-a6ec-d774002529ea" text="PRIMARY INPUT REQUIRED TO RUN THE SCRIPT. THESE INCLUDES INPUTS THAT OTHER USERS NEED TO PROVIDE IN ORDER TO ADAPT THE WORKFLOW TO THEIR PROJECTS" x="-86.419129472572" y="-473.144232030945" />
+    <Dynamo.Graph.Notes.NoteModel guid="c54bad7f-fed1-484b-a63a-8fcc47c8c203" text="PRIMARY INPUT" x="-81.0309714486916" y="-602.331870801035" />
+    <Dynamo.Graph.Notes.NoteModel guid="28b454f0-131c-404c-9ea9-310e04e0a904" text="CUSTOM NODE: RevisionSheetsList&#xD;&#xA;DESCRIPTION: Identify all sheets containing revision clouds for the selected revision.&#xD;&#xA;&#xD;&#xA;REVIT VERSION 2017&#xD;&#xA;DYNAMO 1.3.0&#xD;&#xA;DEPENDENT PACKAGES: CLOCKWORK&#xD;&#xA;&#xD;&#xA;AUTHOR: Gloriana Gonzales&#xD;&#xA;DATETIME: 05/22/2017&#xD;&#xA;LAST UPDATE: Ilaria Giardiello&#xD;&#xA;DATETIME: 02/08/2017&#xD;&#xA;&#xD;&#xA;REFERENCE: N/A" x="-401.797780284422" y="-604.691887236775" />
+  </Notes>
+  <Annotations>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="12a224e8-5e1c-490f-accb-27037c845a53" annotationText="EMPTY SETS" left="801.360926318549" top="-292.894352277032" width="101.22" height="176" fontSize="30" InitialTop="-210.894352277032" InitialHeight="124" TextblockHeight="72" backgrouund="#FFFFAA45">
+      <Models ModelGuid="356ee849-64f7-4dc5-846c-246b77f39426" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="f335c98c-44fa-4778-9a7b-19da837b17d9" annotationText="DOOR MARKS AND HARDWARE SETS" left="458.657134859739" top="-300.185312160611" width="170.123333333333" height="248" fontSize="30" InitialTop="-146.185312160611" InitialHeight="124" TextblockHeight="144" backgrouund="#FFFFAA45">
+      <Models ModelGuid="3d4eba60-0ff7-4eb0-85dc-727907d6b43e" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="eb3cf6c5-29ab-43f0-b275-1addd00c6644" annotationText="ASSIGNED HARDWARE SETS" left="202.576440136631" top="-11.0495478719139" width="148.44" height="212" fontSize="30" InitialTop="106.950452128086" InitialHeight="139" TextblockHeight="108" backgrouund="#FFFFAA45">
+      <Models ModelGuid="03d6022e-3b06-4b5c-8231-538b3ef726cc" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="92b88cf1-e4e6-4d28-b453-9be14f08a33d" annotationText="INPUT" left="-421.844103931064" top="-330.999458339368" width="326.248360297183" height="374.850274047994" fontSize="30" InitialTop="-284.999458339368" InitialHeight="295.478140756219" TextblockHeight="36" backgrouund="#FFA4E1FF">
+      <Models ModelGuid="dd99c0dd-d5fb-4c35-992f-4ccc662b6120" />
+      <Models ModelGuid="9b8c43a3-1422-49ea-9ead-b245415cda52" />
+      <Models ModelGuid="6525b8fe-76d9-4f91-8ced-11cfb0734872" />
+      <Models ModelGuid="ff87c220-a51e-4221-a096-ec0af15b9eea" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="c1bd32ed-a25d-49c1-a80b-31e19a8be792" annotationText="OUTPUT" left="890.391042189278" top="-646.381438857375" width="312" height="263.18763877009" fontSize="30" InitialTop="-600.381438857375" InitialHeight="255.18763877009" TextblockHeight="36" backgrouund="#FFFFAA45">
+      <Models ModelGuid="aabcf0c6-6121-4930-842d-b8e4f807b84e" />
+      <Models ModelGuid="55c771a9-cf86-4ae2-a572-64845c6c7f29" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="e195bab8-df97-4f63-af91-14442e36e28c" annotationText="PROCESS" left="548.813992306648" top="-647.356654829205" width="322.008271904157" height="263.187638770089" fontSize="30" InitialTop="-601.356654829205" InitialHeight="255.18763877009" TextblockHeight="36" backgrouund="#FFC1D676">
+      <Models ModelGuid="642eecef-c3ac-470d-9374-354ebfbee5c3" />
+      <Models ModelGuid="4693f4d1-1be1-48aa-b1b9-754f8cc2d26f" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="f4c917eb-f7fa-4d92-83e5-c0837f196644" annotationText="INPUT" left="234.665876251888" top="-650.691887236775" width="302" height="263.18763877009" fontSize="30" InitialTop="-604.691887236775" InitialHeight="269.18763877009" TextblockHeight="36" backgrouund="#FFE8F7AD">
+      <Models ModelGuid="e804bf12-d4f3-43d8-9643-2c9634696e04" />
+      <Models ModelGuid="03cf93b7-4058-4f53-9d62-0db3b949516b" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="f7d40f7b-8ce9-4b34-b927-36e25d69f8bf" annotationText="INPUT" left="-96.419129472572" top="-648.331870801035" width="317" height="263.18763877009" fontSize="30" InitialTop="-602.331870801035" InitialHeight="269.18763877009" TextblockHeight="36" backgrouund="#FFA4E1FF">
+      <Models ModelGuid="21bb0fde-34fc-407d-a6ec-d774002529ea" />
+      <Models ModelGuid="c54bad7f-fed1-484b-a63a-8fcc47c8c203" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="c5581f3f-5c43-40b0-90cf-5e7b4bad6a9c" annotationText="GENERAL" left="-411.797780284422" top="-650.691887236775" width="314" height="278" fontSize="30" InitialTop="-604.691887236775" InitialHeight="140" TextblockHeight="36" backgrouund="#FFD8D8D8">
+      <Models ModelGuid="28b454f0-131c-404c-9ea9-310e04e0a904" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="9a3f83d7-7034-498b-9111-458b1f941487" annotationText="SASAKI PACKAGE&#xD;&#xA;ASSIGN DOOR HARDWARE SET" left="-42.59499831418" top="-288.369343812799" width="424" height="253" fontSize="30" InitialTop="-206.369343812799" InitialHeight="201" TextblockHeight="72" backgrouund="#FFC1D676">
+      <Models ModelGuid="9b333534-3e9e-4647-a880-f9615954ee98" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+  </Annotations>
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-1.93841862678528" eyeY="11.9742059707642" eyeZ="24.8269348144531" lookX="6.13507080078125" lookY="-6.64632701873779" lookZ="-29.6528415679932" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

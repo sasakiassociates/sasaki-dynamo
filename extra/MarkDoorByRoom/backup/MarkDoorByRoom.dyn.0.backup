@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="-673.166670695332" Y="-534.042660839657" zoom="0.771767702918043" Name="Home" Description="" RunType="Manual" RunPeriod="100" HasRunWithoutCrash="False">
+<Workspace Version="0.9.2.4472" X="-920.166670695332" Y="-746.042660839657" zoom="0.771767702918043" Name="Home" Description="" RunType="Manual" RunPeriod="100" HasRunWithoutCrash="True">
   <NamespaceResolutionMap>
     <ClassMap partialName="Vector.XAxis" resolvedName="Autodesk.DesignScript.Geometry.Vector" assemblyName="ProtoGeometry.dll" />
     <ClassMap partialName="Vector.YAxis" resolvedName="Autodesk.DesignScript.Geometry.Vector" assemblyName="ProtoGeometry.dll" />
@@ -10,13 +10,10 @@
     <ClassMap partialName="DSCore.Object" resolvedName="DSCore.Object" assemblyName="DSCoreNodes.dll" />
   </NamespaceResolutionMap>
   <Elements>
-    <Dynamo.Graph.Nodes.CustomNodes.Function guid="81f42625-3c45-4851-8767-424a9c3d65a7" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="MarkDoorByRoom" x="1487.46942521531" y="1178.499303354" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
-      <PortInfo index="0" default="False" />
-      <PortInfo index="1" default="False" />
-      <PortInfo index="2" default="False" />
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="81f42625-3c45-4851-8767-424a9c3d65a7" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="MarkDoorByRoom" x="1488.76515189086" y="1178.499303354" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false">
       <ID value="3e64e2e7-2adb-4e4e-94a5-8909e8e8e9df" />
       <Name value="MarkDoorByRoom" />
-      <Description value="Mark Door by Room Number" />
+      <Description value="" />
       <Inputs>
         <Input value="RoomSource" />
         <Input value="LetterRequired" />
@@ -29,29 +26,19 @@
         <Output value="DoorsWithoutLocation" />
       </Outputs>
     </Dynamo.Graph.Nodes.CustomNodes.Function>
-    <CoreNodeModels.Input.StringInput guid="91d1f340-7bf3-4905-9379-d22ff5914f9c" type="CoreNodeModels.Input.StringInput" nickname="String" x="1177.25785562329" y="1165.95901769546" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+    <CoreNodeModels.Input.StringInput guid="91d1f340-7bf3-4905-9379-d22ff5914f9c" type="CoreNodeModels.Input.StringInput" nickname="String" x="1177.25785562329" y="1165.95901769546" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
       <System.String>to</System.String>
       <System.String value="to" />
     </CoreNodeModels.Input.StringInput>
-    <CoreNodeModels.Watch guid="8fe0c428-0483-4ed4-87d4-9c49163e795a" type="CoreNodeModels.Watch" nickname="Watch" x="2209.37575242736" y="1042.61645035487" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
-      <PortInfo index="0" default="False" />
-    </CoreNodeModels.Watch>
-    <CoreNodeModels.Watch guid="cfd04d3c-3187-4f3a-9c4a-603e455866bd" type="CoreNodeModels.Watch" nickname="Watch" x="1894.82398235031" y="1538.80726136735" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
-      <PortInfo index="0" default="False" />
-    </CoreNodeModels.Watch>
-    <CoreNodeModels.Watch guid="68b0aae0-6011-457b-923b-6c0d7bc77520" type="CoreNodeModels.Watch" nickname="Watch" x="1892.13240324763" y="1040.99092921393" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
-      <PortInfo index="0" default="False" />
-    </CoreNodeModels.Watch>
-    <CoreNodeModels.Watch guid="5ab9f864-88c4-4730-99d3-9c03b4395b77" type="CoreNodeModels.Watch" nickname="Watch" x="2205.23188061767" y="1536.82559497043" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
-      <PortInfo index="0" default="False" />
-    </CoreNodeModels.Watch>
-    <CoreNodeModels.Input.BoolSelector guid="ea2a4061-eb8e-48a9-8abd-fbf0edc3ea4b" type="CoreNodeModels.Input.BoolSelector" nickname="Boolean" x="1175.78157708547" y="1329.70189882199" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+    <CoreNodeModels.Watch guid="8fe0c428-0483-4ed4-87d4-9c49163e795a" type="CoreNodeModels.Watch" nickname="Watch" x="2209.37575242736" y="1042.61645035487" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />
+    <CoreNodeModels.Watch guid="cfd04d3c-3187-4f3a-9c4a-603e455866bd" type="CoreNodeModels.Watch" nickname="Watch" x="1894.82398235031" y="1538.80726136735" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />
+    <CoreNodeModels.Watch guid="68b0aae0-6011-457b-923b-6c0d7bc77520" type="CoreNodeModels.Watch" nickname="Watch" x="1892.13240324763" y="1040.99092921393" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />
+    <CoreNodeModels.Watch guid="5ab9f864-88c4-4730-99d3-9c03b4395b77" type="CoreNodeModels.Watch" nickname="Watch" x="2205.23188061767" y="1536.82559497043" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />
+    <CoreNodeModels.Input.BoolSelector guid="ea2a4061-eb8e-48a9-8abd-fbf0edc3ea4b" type="CoreNodeModels.Input.BoolSelector" nickname="Boolean" x="1175.78157708547" y="1329.70189882199" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
       <System.Boolean>False</System.Boolean>
     </CoreNodeModels.Input.BoolSelector>
-    <DSRevitNodesUI.Categories guid="e6bd1f54-c416-47b4-b097-61a7440ee7c5" type="DSRevitNodesUI.Categories" nickname="Categories" x="1171.4101893205" y="1504.33273101477" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="145:Doors" />
-    <DSRevitNodesUI.ElementsOfCategory guid="05a5ba35-df48-4d8f-8816-5532b15650ee" type="DSRevitNodesUI.ElementsOfCategory" nickname="All Elements of Category" x="1354.85239086305" y="1506.86296827743" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
-      <PortInfo index="0" default="False" />
-    </DSRevitNodesUI.ElementsOfCategory>
+    <DSRevitNodesUI.Categories guid="e6bd1f54-c416-47b4-b097-61a7440ee7c5" type="DSRevitNodesUI.Categories" nickname="Categories" x="1171.4101893205" y="1504.33273101477" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" index="207:Doors" />
+    <DSRevitNodesUI.ElementsOfCategory guid="05a5ba35-df48-4d8f-8816-5532b15650ee" type="DSRevitNodesUI.ElementsOfCategory" nickname="All Elements of Category" x="1354.85239086305" y="1506.86296827743" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />
   </Elements>
   <Connectors>
     <Dynamo.Graph.Connectors.ConnectorModel start="81f42625-3c45-4851-8767-424a9c3d65a7" start_index="0" end="8fe0c428-0483-4ed4-87d4-9c49163e795a" end_index="0" portType="0" />
@@ -73,25 +60,25 @@
     <Dynamo.Graph.Notes.NoteModel guid="275f4830-2348-4a17-a571-f0d1f3f99c89" text="Doors: doors to be marked by room&#xD;&#xA;optional: apply filter to the input door list" x="1172.01493457361" y="1449.90481580512" />
   </Notes>
   <Annotations>
-    <Dynamo.Graph.Annotations.AnnotationModel guid="f60d0bb4-635c-4ad9-b274-6f1de5954be0" annotationText="succeed" left="1882.13240324763" top="942.955091794485" width="615.11701243659" height="193.661358560385" fontSize="14" InitialTop="972.955091794485" InitialHeight="409.62552114094" TextblockHeight="20" backgrouund="#FFC1D676">
+    <Dynamo.Graph.Annotations.AnnotationModel guid="f60d0bb4-635c-4ad9-b274-6f1de5954be0" annotationText="succeed" left="1882.13240324763" top="942.955091794485" width="615.11701243659" height="477.661358560385" fontSize="14" InitialTop="972.955091794485" InitialHeight="409.62552114094" TextblockHeight="20" backgrouund="#FFC1D676">
       <Models ModelGuid="8fe0c428-0483-4ed4-87d4-9c49163e795a" />
       <Models ModelGuid="68b0aae0-6011-457b-923b-6c0d7bc77520" />
       <Models ModelGuid="fc5e8a64-85b4-45ad-b7ed-d8ed28a4afa8" />
       <Models ModelGuid="0fea701b-91f7-4859-997e-356c51664395" />
     </Dynamo.Graph.Annotations.AnnotationModel>
-    <Dynamo.Graph.Annotations.AnnotationModel guid="74264695-a161-4ab7-90db-0cf640f4c2c4" annotationText="failed" left="1883.18732289771" top="1437.57580001913" width="624.79061674293" height="195.23146134822" fontSize="14" InitialTop="1467.57580001913" InitialHeight="451.611588974976" TextblockHeight="20" backgrouund="#FFC1D676">
+    <Dynamo.Graph.Annotations.AnnotationModel guid="74264695-a161-4ab7-90db-0cf640f4c2c4" annotationText="failed" left="1883.18732289771" top="1437.57580001913" width="622.04455771996" height="479.23146134822" fontSize="14" InitialTop="1467.57580001913" InitialHeight="451.611588974976" TextblockHeight="20" backgrouund="#FFC1D676">
       <Models ModelGuid="cfd04d3c-3187-4f3a-9c4a-603e455866bd" />
       <Models ModelGuid="5ab9f864-88c4-4730-99d3-9c03b4395b77" />
       <Models ModelGuid="75c68f21-7564-4df8-8e99-e9205e4b229a" />
       <Models ModelGuid="7b0f4c4c-d341-4980-8eff-a5597b6dc9a9" />
     </Dynamo.Graph.Annotations.AnnotationModel>
-    <Dynamo.Graph.Annotations.AnnotationModel guid="6fbd25c6-9129-4fa1-9e42-c4158b36070d" annotationText="input settings" left="1164.79388469942" top="1067.2571095084" width="301.01545520546" height="330.44478931359" fontSize="14" InitialTop="1097.2571095084" InitialHeight="296.286586267735" TextblockHeight="20" backgrouund="#FFC1D676">
+    <Dynamo.Graph.Annotations.AnnotationModel guid="6fbd25c6-9129-4fa1-9e42-c4158b36070d" annotationText="input settings" left="1164.79388469942" top="1067.2571095084" width="303.01545520546" height="330.44478931359" fontSize="14" InitialTop="1097.2571095084" InitialHeight="296.286586267735" TextblockHeight="20" backgrouund="#FFC1D676">
       <Models ModelGuid="91d1f340-7bf3-4905-9379-d22ff5914f9c" />
       <Models ModelGuid="ea2a4061-eb8e-48a9-8abd-fbf0edc3ea4b" />
       <Models ModelGuid="81522211-5cd1-44b2-854e-05c693ea72e0" />
       <Models ModelGuid="fd2a4942-80b9-4555-b0db-496f7d64e9f0" />
     </Dynamo.Graph.Annotations.AnnotationModel>
-    <Dynamo.Graph.Annotations.AnnotationModel guid="8b59191d-1bbf-4ac0-b4ea-93ae7a48d7d6" annotationText="input doors" left="1161.4101893205" top="1419.90481580512" width="371.44220154255" height="177.42791520965" fontSize="14" InitialTop="1449.90481580512" InitialHeight="163.51161026504" TextblockHeight="20" backgrouund="#FFC1D676">
+    <Dynamo.Graph.Annotations.AnnotationModel guid="8b59191d-1bbf-4ac0-b4ea-93ae7a48d7d6" annotationText="input doors" left="1161.4101893205" top="1419.90481580512" width="377.44220154255" height="177.42791520965" fontSize="14" InitialTop="1449.90481580512" InitialHeight="163.51161026504" TextblockHeight="20" backgrouund="#FFC1D676">
       <Models ModelGuid="e6bd1f54-c416-47b4-b097-61a7440ee7c5" />
       <Models ModelGuid="05a5ba35-df48-4d8f-8816-5532b15650ee" />
       <Models ModelGuid="275f4830-2348-4a17-a571-f0d1f3f99c89" />

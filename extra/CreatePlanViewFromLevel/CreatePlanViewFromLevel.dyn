@@ -1,0 +1,266 @@
+<Workspace Version="1.3.0.875" X="934.897997655061" Y="-644.378320282653" zoom="0.744573641294018" ScaleFactor="1" Name="Home" Description="" RunType="Manual" RunPeriod="1000" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="Topology.U" resolvedName="Autodesk.DesignScript.Geometry.Topology" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="String" resolvedName="DSCore.String" assemblyName="DSCoreNodes.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <CoreNodeModels.Input.StringInput guid="2a00ba9f-9093-4b45-8c49-aed1bb298096" type="CoreNodeModels.Input.StringInput" nickname="String - ViewTemplate" x="-1281.12357863683" y="1622.52643637626" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.String>A1.00 Architectural Plan</System.String>
+      <System.String value="A1.00 Architectural Plan" />
+    </CoreNodeModels.Input.StringInput>
+    <CoreNodeModels.Input.StringInput guid="67a9db53-4d2e-4435-bab3-dd82c81c97fe" type="CoreNodeModels.Input.StringInput" nickname="String - ScopeBox" x="-1281.12357863683" y="1682.29397587668" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.String>Scope Box 1</System.String>
+      <System.String value="Scope Box 1" />
+    </CoreNodeModels.Input.StringInput>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="f636b730-9c9a-4ff3-beb6-9a0d626c19fc" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block - SelectedLevelsName" x="-1281.12357863683" y="1379.68249541216" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="{&quot;LEVEL 1&quot;,&#xA;&quot;LEVEL 2&quot;};" ShouldFocus="false" />
+    <CoreNodeModels.Watch guid="46943897-f5a7-4726-887e-b9f6d738874e" type="CoreNodeModels.Watch" nickname="Watch" x="-584.185184096144" y="1417.28726651994" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Watch>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="07ef661b-66b9-41f4-8705-b237ba3ab231" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="1718.26589157006" y="5308.02250904427" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="PlacedViews;" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <PythonNodeModels.PythonNode guid="a887d8c8-7c23-48e1-aabf-701da6eb8ca3" type="PythonNodeModels.PythonNode" nickname="PlaceViewOnSheet" x="1541.2591514704" y="5347.63779174131" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="4">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <PortInfo index="3" default="False" />
+      <Script>#Put view on sheet
+import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+sheets = IN[0]
+views = IN[1]
+x = IN[2]
+y = IN[3]
+viewsplaced = list()
+
+
+TransactionManager.Instance.EnsureInTransaction(doc) # you need an active transaction as you will create elements
+
+for number in range(len(sheets)):
+	sheet = UnwrapElement(sheets[number])
+	view = UnwrapElement(views[number])
+	Viewport.Create(doc, sheet.Id, view.Id, XYZ(x,y,0))
+	viewsplaced.append(view.ToDSType(False))
+	
+TransactionManager.Instance.TransactionTaskDone()
+
+OUT = viewsplaced</Script>
+    </PythonNodeModels.PythonNode>
+    <PythonNodeModels.PythonNode guid="13008b84-e639-4ed4-845c-5c4bd63a4f66" type="PythonNodeModels.PythonNode" nickname="FilterSortSheetByNumber" x="1306.21459309941" y="5276.24995364547" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+
+sheets = IN[0]
+sheet_numbers = IN[1]
+ans = []
+
+for sheet in sheets:
+	if sheet.SheetNumber in sheet_numbers:
+		ans.append(sheet)
+		
+ans = sorted(ans, key=lambda x: sheet_numbers.index(x.SheetNumber))
+		
+OUT = ans</Script>
+    </PythonNodeModels.PythonNode>
+    <PythonNodeModels.PythonNode guid="6eb45213-b279-4dbf-bb2b-ae141dee0de2" type="PythonNodeModels.PythonNode" nickname="FilterSortViewByName" x="1309.90126907908" y="5461.98024151153" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+
+views = IN[0]
+view_names = IN[1]
+ans = []
+
+for view in views:
+	if view is None:
+		continue
+	if view.Name in view_names:
+		ans.append(view)
+		
+ans = sorted(ans, key=lambda x: view_names.index(x.Name))
+
+OUT = ans</Script>
+    </PythonNodeModels.PythonNode>
+    <DSRevitNodesUI.ElementsOfCategory guid="c06a10c1-4413-4b29-891f-954ef540e289" type="DSRevitNodesUI.ElementsOfCategory" nickname="All Elements of Category" x="1115.3118039617" y="5465.2139212972" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </DSRevitNodesUI.ElementsOfCategory>
+    <DSRevitNodesUI.ElementsOfCategory guid="0b160281-154b-4c1a-8248-98fe6db7d822" type="DSRevitNodesUI.ElementsOfCategory" nickname="All Elements of Category" x="1114.45182256777" y="5276.14262672854" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </DSRevitNodesUI.ElementsOfCategory>
+    <DSRevitNodesUI.Categories guid="7a913583-b39f-4a54-825f-a53c32a2fee4" type="DSRevitNodesUI.Categories" nickname="Categories" x="929.873105196707" y="5277.52581649619" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="422:Sheets" />
+    <DSRevitNodesUI.Categories guid="dda079ac-a004-4f94-8064-8b7884b4f2bd" type="DSRevitNodesUI.Categories" nickname="Categories" x="934.603198800309" y="5466.86709347015" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="572:Views" />
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="8a203b06-57d8-4d43-8901-0271f8f28dd3" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="728.44392202608" y="5271.19713353562" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="SheetNumbers;" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="e58e613e-e8c0-48e4-b20e-507e5a45b04c" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="730.503416726113" y="5341.71201422715" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="ViewNames;" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="c9bf9efb-c95b-4c4f-8b70-fc39cbdc2976" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="729.55584985005" y="5409.84704358827" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="LocationX;" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="5fbf0927-91b0-4f90-b9d7-a97f6d35305c" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="727.837007605862" y="5486.78298071091" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="LocationY;" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="800757d9-48d3-466d-8481-0af87ea8ca12" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="CreatePlanViewFromLevel" x="-959.123287994429" y="1416.28636441535" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <PortInfo index="3" default="False" />
+      <PortInfo index="4" default="False" />
+      <ID value="30cd0064-595e-4dba-aa2a-60587f4d2098" />
+      <Name value="CreatePlanViewFromLevel" />
+      <Description value="Automatically create Plan Views from selected levels, name them according to BPM standards, apply the selected view template and apply a scope box for view crop" />
+      <Inputs>
+        <Input value="LevelsName" />
+        <Input value="IsWorkingView" />
+        <Input value="ViewPrefix" />
+        <Input value="SelectViewTemplate" />
+        <Input value="ScopeBox" />
+      </Inputs>
+      <Outputs>
+        <Output value="ViewName" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <CoreNodeModels.Input.StringInput guid="7f45973b-b910-4ada-a52a-981281ebf742" type="CoreNodeModels.Input.StringInput" nickname="String - ViewPrefix" x="-1281.12357863683" y="1553.57298224012" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.String>FLOOR PLAN</System.String>
+      <System.String value="FLOOR PLAN" />
+    </CoreNodeModels.Input.StringInput>
+    <CoreNodeModels.Input.BoolSelector guid="5bcaff88-f352-46a5-a5ad-03f12030b07b" type="CoreNodeModels.Input.BoolSelector" nickname="Boolean - Is the View a Working view?" x="-1281.12357863683" y="1484.66300732146" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.Boolean>False</System.Boolean>
+    </CoreNodeModels.Input.BoolSelector>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="2a00ba9f-9093-4b45-8c49-aed1bb298096" start_index="0" end="800757d9-48d3-466d-8481-0af87ea8ca12" end_index="3" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="67a9db53-4d2e-4435-bab3-dd82c81c97fe" start_index="0" end="800757d9-48d3-466d-8481-0af87ea8ca12" end_index="4" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f636b730-9c9a-4ff3-beb6-9a0d626c19fc" start_index="0" end="800757d9-48d3-466d-8481-0af87ea8ca12" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a887d8c8-7c23-48e1-aabf-701da6eb8ca3" start_index="0" end="07ef661b-66b9-41f4-8705-b237ba3ab231" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="13008b84-e639-4ed4-845c-5c4bd63a4f66" start_index="0" end="a887d8c8-7c23-48e1-aabf-701da6eb8ca3" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6eb45213-b279-4dbf-bb2b-ae141dee0de2" start_index="0" end="a887d8c8-7c23-48e1-aabf-701da6eb8ca3" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c06a10c1-4413-4b29-891f-954ef540e289" start_index="0" end="6eb45213-b279-4dbf-bb2b-ae141dee0de2" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0b160281-154b-4c1a-8248-98fe6db7d822" start_index="0" end="13008b84-e639-4ed4-845c-5c4bd63a4f66" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7a913583-b39f-4a54-825f-a53c32a2fee4" start_index="0" end="0b160281-154b-4c1a-8248-98fe6db7d822" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="dda079ac-a004-4f94-8064-8b7884b4f2bd" start_index="0" end="c06a10c1-4413-4b29-891f-954ef540e289" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="8a203b06-57d8-4d43-8901-0271f8f28dd3" start_index="0" end="13008b84-e639-4ed4-845c-5c4bd63a4f66" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e58e613e-e8c0-48e4-b20e-507e5a45b04c" start_index="0" end="6eb45213-b279-4dbf-bb2b-ae141dee0de2" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c9bf9efb-c95b-4c4f-8b70-fc39cbdc2976" start_index="0" end="a887d8c8-7c23-48e1-aabf-701da6eb8ca3" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="5fbf0927-91b0-4f90-b9d7-a97f6d35305c" start_index="0" end="a887d8c8-7c23-48e1-aabf-701da6eb8ca3" end_index="3" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="800757d9-48d3-466d-8481-0af87ea8ca12" start_index="0" end="46943897-f5a7-4726-887e-b9f6d738874e" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7f45973b-b910-4ada-a52a-981281ebf742" start_index="0" end="800757d9-48d3-466d-8481-0af87ea8ca12" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="5bcaff88-f352-46a5-a5ad-03f12030b07b" start_index="0" end="800757d9-48d3-466d-8481-0af87ea8ca12" end_index="1" portType="0" />
+  </Connectors>
+  <Notes>
+    <Dynamo.Graph.Notes.NoteModel guid="a9e0a782-1e53-4afa-b925-c5f8d04e0401" text="SCRIPT OUTPUT MIGHT INCLUDE DATA OR SIMPLY NOTIFICATION OF WHETHER THE SCRIPT RAN SUCCESSFULLY. HIGHLIGHTING THE OUTPUT OR FINAL STEP WILL HELP OTHER USERS TO QUICKLY IDENTIFY WHERE TO LOOK FOR RESULTS" x="378.040172830652" y="1132.25590721403" />
+    <Dynamo.Graph.Notes.NoteModel guid="9f7a6b93-702f-45a5-ab1f-efee58a0855e" text="DYNAMO PROCESS ORGANIZED AND GROUPED IN STEPS SO THAT OTHER USERS CAN UNDERSTAND THE LOGIC OF THE SCRIPT IN ORDER TO CUSTOMIZE THE SCRIPT OR REUSE PORTION OF THE LOGIC TO IMPLEMENT NEW WORKFLOWS" x="36.4631229480226" y="1131.2806912422" />
+    <Dynamo.Graph.Notes.NoteModel guid="73c3d1b1-9bb5-42f3-9c12-bde460fbb84b" text="SCRIPT INPUT REQUIRED TO RUN THE SCRIPT. THESE INCLUDE INPUTS THAT ARE LESS LIKEY TO CHANGE FOR OTHER USERS TO IMPLEMENT THE SCRIPT ON THEIR PROJECT" x="-277.684993106738" y="1141.94545883463" />
+    <Dynamo.Graph.Notes.NoteModel guid="d85319c8-b3f0-4451-9f57-aa9c69a9bade" text="PRIMARY INPUT REQUIRED TO RUN THE SCRIPT. THESE INCLUDES INPUTS THAT OTHER USERS NEED TO PROVIDE IN ORDER TO ADAPT THE WORKFLOW TO THEIR PROJECTS" x="-608.769998831202" y="1144.30547527037" />
+    <Dynamo.Graph.Notes.NoteModel guid="5d3b9eda-21eb-4736-9c3a-2a619ceb7c80" text="SCRIPT OUTPUT" x="378.130281117063" y="1017.06826844394" />
+    <Dynamo.Graph.Notes.NoteModel guid="3dd2d093-fb7b-42b2-a0b7-7602201de29b" text="PROCESS DATA" x="38.4415177105325" y="1016.09305247211" />
+    <Dynamo.Graph.Notes.NoteModel guid="dfb0b22b-b176-483c-8d34-9ba6932195be" text="SECONDARY INPUT (OPTIONAL)" x="-274.068153661488" y="1012.75782006454" />
+    <Dynamo.Graph.Notes.NoteModel guid="f2d11653-0579-4851-9a9c-61fd687e7d27" text="PRIMARY INPUT" x="-603.381840807323" y="1015.11783650028" />
+    <Dynamo.Graph.Notes.NoteModel guid="603bd374-a35b-4748-ae72-b83df7aefaac" text="CUSTOM NODE: CreatePlanViewsFromLevels&#xD;&#xA;DESCRIPTION: Automatically create Plan Views from selected levels, name them according to BPM standards, apply the selected view template and apply a scope box for view crop&#xD;&#xA;&#xD;&#xA;REVIT VERSION 2017&#xD;&#xA;DYNAMO 1.3.0&#xD;&#xA;DEPENDENT PACKAGES: STEAMNODES, CLOCKWORK&#xD;&#xA;&#xD;&#xA;AUTHOR: Ilaria Giardiello&#xD;&#xA;DATETIME: 11/27/2017&#xD;&#xA;&#xD;&#xA;REFERENCE: N/A&#xD;&#xA;&#xD;&#xA;" x="-935.613520766601" y="1013.05834495381" />
+  </Notes>
+  <Annotations>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="5a1fe970-0732-4f63-8da4-60d5f3691bef" annotationText="SUCCESSFULLY CRATED VIEWS" left="-594.185184096144" top="1335.28726651994" width="310" height="258" fontSize="30" InitialTop="1417.28726651994" InitialHeight="124" TextblockHeight="72" backgrouund="#FFFFAA45">
+      <Models ModelGuid="46943897-f5a7-4726-887e-b9f6d738874e" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="39f33a3f-f8ce-450d-8b0d-95deab29090c" annotationText="OUTPUT" left="368.040172830652" top="971.06826844394" width="312" height="263.18763877009" fontSize="30" InitialTop="1017.06826844394" InitialHeight="255.18763877009" TextblockHeight="36" backgrouund="#FFFFAA45">
+      <Models ModelGuid="a9e0a782-1e53-4afa-b925-c5f8d04e0401" />
+      <Models ModelGuid="5d3b9eda-21eb-4736-9c3a-2a619ceb7c80" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="0dc667a4-ccc5-44a3-b6a5-c1bb17738dda" annotationText="PROCESS" left="26.4631229480226" top="970.09305247211" width="322.008271904157" height="263.18763877009" fontSize="30" InitialTop="1016.09305247211" InitialHeight="255.18763877009" TextblockHeight="36" backgrouund="#FFC1D676">
+      <Models ModelGuid="9f7a6b93-702f-45a5-ab1f-efee58a0855e" />
+      <Models ModelGuid="3dd2d093-fb7b-42b2-a0b7-7602201de29b" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="40852a12-5858-4e94-ba9c-43ec05539f80" annotationText="INPUT" left="-287.684993106738" top="966.75782006454" width="302" height="263.18763877009" fontSize="30" InitialTop="1012.75782006454" InitialHeight="269.18763877009" TextblockHeight="36" backgrouund="#FFE8F7AD">
+      <Models ModelGuid="73c3d1b1-9bb5-42f3-9c12-bde460fbb84b" />
+      <Models ModelGuid="dfb0b22b-b176-483c-8d34-9ba6932195be" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="b55f70dd-7959-4937-91f6-dfaff2bdbc13" annotationText="PLACED VIEWS" left="1708.26589157006" top="5262.02250904427" width="235" height="139" fontSize="30" InitialTop="5308.02250904427" InitialHeight="123" TextblockHeight="36" backgrouund="#FFFFAA45">
+      <Models ModelGuid="07ef661b-66b9-41f4-8705-b237ba3ab231" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="cee184a3-c948-4a8d-af4e-196723ff5cdb" annotationText="INPUT" left="-618.769998831202" top="969.11783650028" width="317" height="263.18763877009" fontSize="30" InitialTop="1015.11783650028" InitialHeight="269.18763877009" TextblockHeight="36" backgrouund="#FFA4E1FF">
+      <Models ModelGuid="d85319c8-b3f0-4451-9f57-aa9c69a9bade" />
+      <Models ModelGuid="f2d11653-0579-4851-9a9c-61fd687e7d27" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="924ed494-7ae8-416c-a839-ca77c47fc8da" annotationText="PLACE VIEW ON SHEET" left="1531.2591514704" top="5229.63779174131" width="147" height="289" fontSize="30" InitialTop="5347.63779174131" InitialHeight="201" TextblockHeight="108" backgrouund="#FFC1D676">
+      <Models ModelGuid="a887d8c8-7c23-48e1-aabf-701da6eb8ca3" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="96ad3397-c0cc-4817-9cca-b89c29650fbf" annotationText="SORT AND FILTER SHEETS BY NUMBER" left="919.873105196707" top="5230.14262672854" width="567.341487902703" height="165.10732691693" fontSize="30" InitialTop="5276.14262672854" InitialHeight="149.107326916929" TextblockHeight="36" backgrouund="#FFC1D676">
+      <Models ModelGuid="7a913583-b39f-4a54-825f-a53c32a2fee4" />
+      <Models ModelGuid="0b160281-154b-4c1a-8248-98fe6db7d822" />
+      <Models ModelGuid="13008b84-e639-4ed4-845c-5c4bd63a4f66" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="700fc709-0b59-431b-9890-2103c6a4f677" annotationText="SORT AND FILTER SHEETS BY NAME" left="924.603198800309" top="5415.98024151153" width="546.298070278771" height="165" fontSize="30" InitialTop="5461.98024151153" InitialHeight="149" TextblockHeight="36" backgrouund="#FFC1D676">
+      <Models ModelGuid="dda079ac-a004-4f94-8064-8b7884b4f2bd" />
+      <Models ModelGuid="c06a10c1-4413-4b29-891f-954ef540e289" />
+      <Models ModelGuid="6eb45213-b279-4dbf-bb2b-ae141dee0de2" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="311a1eee-5047-4b95-8387-225a9c65f6d0" annotationText="GENERAL" left="-945.613520766601" top="967.05834495381" width="315" height="321" fontSize="30" InitialTop="1013.05834495381" InitialHeight="140" TextblockHeight="36" backgrouund="#FFD8D8D8">
+      <Models ModelGuid="603bd374-a35b-4748-ae72-b83df7aefaac" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="159aac41-af46-401e-ad1c-5b4dd6efedeb" annotationText="INPUT" left="717.837007605862" top="5225.19713353562" width="260.606914420218" height="354.58584717529" fontSize="30" InitialTop="5271.19713353562" InitialHeight="338.58584717529" TextblockHeight="36" backgrouund="#FFA4E1FF">
+      <Models ModelGuid="e58e613e-e8c0-48e4-b20e-507e5a45b04c" />
+      <Models ModelGuid="8a203b06-57d8-4d43-8901-0271f8f28dd3" />
+      <Models ModelGuid="c9bf9efb-c95b-4c4f-8b70-fc39cbdc2976" />
+      <Models ModelGuid="5fbf0927-91b0-4f90-b9d7-a97f6d35305c" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="0f53a18b-20fc-460b-99d7-c29c2a528f87" annotationText="INPUT" left="-1291.12357863683" top="1333.68249541216" width="265" height="416.61148046452" fontSize="30" InitialTop="1379.68249541216" InitialHeight="284.99989098174" TextblockHeight="36" backgrouund="#FFA4E1FF">
+      <Models ModelGuid="2a00ba9f-9093-4b45-8c49-aed1bb298096" />
+      <Models ModelGuid="67a9db53-4d2e-4435-bab3-dd82c81c97fe" />
+      <Models ModelGuid="f636b730-9c9a-4ff3-beb6-9a0d626c19fc" />
+      <Models ModelGuid="7f45973b-b910-4ada-a52a-981281ebf742" />
+      <Models ModelGuid="5bcaff88-f352-46a5-a5ad-03f12030b07b" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="a285c884-d019-4792-adc5-94ef1d214cd4" annotationText="SASAKI PACKAGE&#xD;&#xA;CreatePlanViewFromLevel" left="-969.123287994429" top="1334.28636441535" width="351.026666666667" height="279" fontSize="30" InitialTop="1416.28636441535" InitialHeight="175" TextblockHeight="72" backgrouund="#FFC1D676">
+      <Models ModelGuid="800757d9-48d3-466d-8481-0af87ea8ca12" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+  </Annotations>
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17.5174427032471" eyeY="19.3615055084229" eyeZ="48.0519676208496" lookX="9.82887649536133" lookY="16.3277168273926" lookZ="-57.5656051635742" upX="-0.0790151059627533" upY="0.882947564125061" upZ="0.46277442574501" />
+  </Cameras>
+  <SessionTraceData>
+    <NodeTraceData NodeId="800757d9-48d3-466d-8481-0af87ea8ca12">
+      <CallsiteTraceData CallSiteID="__func_0b90cd73db4e4c7498a175272c9745ec_InClassDecl-1_InFunctionScope-1_Instance0_800757d9-48d3-466d-8481-0af87ea8ca12;ByLevel_InClassDecl-1_InFunctionScope115_Instance0_e44c2be5-6789-41be-b1b8-86e23954e707">PFNPQVAtRU5WOkVudmVsb3BlIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOlNPQVAtRU5DPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyIgeG1sbnM6U09BUC1FTlY9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3NvYXAvZW52ZWxvcGUvIiB4bWxuczpjbHI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc29hcC9lbmNvZGluZy9jbHIvMS4wIiBTT0FQLUVOVjplbmNvZGluZ1N0eWxlPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyI+DQo8U09BUC1FTlY6Qm9keT4NCjxhMTpDYWxsU2l0ZV94MDAyQl9UcmFjZVNlcmlhbGlzZXJIZWxwZXIgaWQ9InJlZi0xIiB4bWxuczphMT0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9jbHIvbnNhc3NlbS9Qcm90b0NvcmUvUHJvdG9Db3JlJTJDJTIwVmVyc2lvbiUzRDEuMy4wLjg3NSUyQyUyMEN1bHR1cmUlM0RuZXV0cmFsJTJDJTIwUHVibGljS2V5VG9rZW4lM0RudWxsIj4NCjxOdW1iZXJPZkVsZW1lbnRzPjE8L051bWJlck9mRWxlbWVudHM+DQo8QmFzZS0wX0hhc0RhdGE+ZmFsc2U8L0Jhc2UtMF9IYXNEYXRhPg0KPEJhc2UtMF9IYXNOZXN0ZWREYXRhPnRydWU8L0Jhc2UtMF9IYXNOZXN0ZWREYXRhPg0KPEJhc2UtMF9OZXN0ZWREYXRhQ291bnQ+MjwvQmFzZS0wX05lc3RlZERhdGFDb3VudD4NCjxCYXNlLTAtMF9IYXNEYXRhPnRydWU8L0Jhc2UtMC0wX0hhc0RhdGE+DQo8QmFzZS0wLTBfRGF0YSBpZD0icmVmLTMiPlBGTlBRVkF0UlU1V09rVnVkbVZzYjNCbElIaHRiRzV6T25oemFUMGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TVM5WVRVeFRZMmhsYldFdGFXNXpkR0Z1WTJVaUlIaHRiRzV6T25oelpEMGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TVM5WVRVeFRZMmhsYldFaUlIaHRiRzV6T2xOUFFWQXRSVTVEUFNKb2RIUndPaTh2YzJOb1pXMWhjeTU0Yld4emIyRndMbTl5Wnk5emIyRndMMlZ1WTI5a2FXNW5MeUlnZUcxc2JuTTZVMDlCVUMxRlRsWTlJbWgwZEhBNkx5OXpZMmhsYldGekxuaHRiSE52WVhBdWIzSm5MM052WVhBdlpXNTJaV3h2Y0dVdklpQjRiV3h1Y3pwamJISTlJbWgwZEhBNkx5OXpZMmhsYldGekxtMXBZM0p2YzI5bWRDNWpiMjB2YzI5aGNDOWxibU52WkdsdVp5OWpiSEl2TVM0d0lpQlRUMEZRTFVWT1ZqcGxibU52WkdsdVoxTjBlV3hsUFNKb2RIUndPaTh2YzJOb1pXMWhjeTU0Yld4emIyRndMbTl5Wnk5emIyRndMMlZ1WTI5a2FXNW5MeUkrRFFvOFUwOUJVQzFGVGxZNlFtOWtlVDROQ2p4aE1UcFRaWEpwWVd4cGVtRmliR1ZKWkNCcFpEMGljbVZtTFRFaUlIaHRiRzV6T21FeFBTSm9kSFJ3T2k4dmMyTm9aVzFoY3k1dGFXTnliM052Wm5RdVkyOXRMMk5zY2k5dWMyRnpjMlZ0TDFKbGRtbDBVMlZ5ZG1salpYTXVVR1Z5YzJsemRHVnVZMlV2VW1WMmFYUlRaWEoyYVdObGN5VXlReVV5TUZabGNuTnBiMjRsTTBReExqTXVNQzQ0TnpVbE1rTWxNakJEZFd4MGRYSmxKVE5FYm1WMWRISmhiQ1V5UXlVeU1GQjFZbXhwWTB0bGVWUnZhMlZ1SlRORWJuVnNiQ0krRFFvOGMzUnlhVzVuU1VRZ2FXUTlJbkpsWmkweklqNDBNak0wTXpsbFppMHpNMkZpTFRSak5qRXRZamRtWkMwellqVXlNR1UyWTJFME4yVXRNREF3WWpnNE9HWThMM04wY21sdVowbEVQZzBLUEdsdWRFbEVQamMxTlRnMU5Ud3ZhVzUwU1VRK0RRbzhMMkV4T2xObGNtbGhiR2w2WVdKc1pVbGtQZzBLUEM5VFQwRlFMVVZPVmpwQ2IyUjVQZzBLUEM5VFQwRlFMVVZPVmpwRmJuWmxiRzl3WlQ0TkNnPT08L0Jhc2UtMC0wX0RhdGE+DQo8QmFzZS0wLTBfSGFzTmVzdGVkRGF0YT5mYWxzZTwvQmFzZS0wLTBfSGFzTmVzdGVkRGF0YT4NCjxCYXNlLTAtMV9IYXNEYXRhPnRydWU8L0Jhc2UtMC0xX0hhc0RhdGE+DQo8QmFzZS0wLTFfRGF0YSBpZD0icmVmLTQiPlBGTlBRVkF0UlU1V09rVnVkbVZzYjNCbElIaHRiRzV6T25oemFUMGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TVM5WVRVeFRZMmhsYldFdGFXNXpkR0Z1WTJVaUlIaHRiRzV6T25oelpEMGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TVM5WVRVeFRZMmhsYldFaUlIaHRiRzV6T2xOUFFWQXRSVTVEUFNKb2RIUndPaTh2YzJOb1pXMWhjeTU0Yld4emIyRndMbTl5Wnk5emIyRndMMlZ1WTI5a2FXNW5MeUlnZUcxc2JuTTZVMDlCVUMxRlRsWTlJbWgwZEhBNkx5OXpZMmhsYldGekxuaHRiSE52WVhBdWIzSm5MM052WVhBdlpXNTJaV3h2Y0dVdklpQjRiV3h1Y3pwamJISTlJbWgwZEhBNkx5OXpZMmhsYldGekxtMXBZM0p2YzI5bWRDNWpiMjB2YzI5aGNDOWxibU52WkdsdVp5OWpiSEl2TVM0d0lpQlRUMEZRTFVWT1ZqcGxibU52WkdsdVoxTjBlV3hsUFNKb2RIUndPaTh2YzJOb1pXMWhjeTU0Yld4emIyRndMbTl5Wnk5emIyRndMMlZ1WTI5a2FXNW5MeUkrRFFvOFUwOUJVQzFGVGxZNlFtOWtlVDROQ2p4aE1UcFRaWEpwWVd4cGVtRmliR1ZKWkNCcFpEMGljbVZtTFRFaUlIaHRiRzV6T21FeFBTSm9kSFJ3T2k4dmMyTm9aVzFoY3k1dGFXTnliM052Wm5RdVkyOXRMMk5zY2k5dWMyRnpjMlZ0TDFKbGRtbDBVMlZ5ZG1salpYTXVVR1Z5YzJsemRHVnVZMlV2VW1WMmFYUlRaWEoyYVdObGN5VXlReVV5TUZabGNuTnBiMjRsTTBReExqTXVNQzQ0TnpVbE1rTWxNakJEZFd4MGRYSmxKVE5FYm1WMWRISmhiQ1V5UXlVeU1GQjFZbXhwWTB0bGVWUnZhMlZ1SlRORWJuVnNiQ0krRFFvOGMzUnlhVzVuU1VRZ2FXUTlJbkpsWmkweklqNDBNak0wTXpsbFppMHpNMkZpTFRSak5qRXRZamRtWkMwellqVXlNR1UyWTJFME4yVXRNREF3WWpnNE9UazhMM04wY21sdVowbEVQZzBLUEdsdWRFbEVQamMxTlRnMk5Ud3ZhVzUwU1VRK0RRbzhMMkV4T2xObGNtbGhiR2w2WVdKc1pVbGtQZzBLUEM5VFQwRlFMVVZPVmpwQ2IyUjVQZzBLUEM5VFQwRlFMVVZPVmpwRmJuWmxiRzl3WlQ0TkNnPT08L0Jhc2UtMC0xX0RhdGE+DQo8QmFzZS0wLTFfSGFzTmVzdGVkRGF0YT5mYWxzZTwvQmFzZS0wLTFfSGFzTmVzdGVkRGF0YT4NCjwvYTE6Q2FsbFNpdGVfeDAwMkJfVHJhY2VTZXJpYWxpc2VySGVscGVyPg0KPC9TT0FQLUVOVjpCb2R5Pg0KPC9TT0FQLUVOVjpFbnZlbG9wZT4NCg==</CallsiteTraceData>
+    </NodeTraceData>
+  </SessionTraceData>
+</Workspace>

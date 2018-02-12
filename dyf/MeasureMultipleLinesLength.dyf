@@ -1,0 +1,150 @@
+<Workspace Version="1.3.0.875" X="163.233471187338" Y="306.339186995948" zoom="0.666867678415087" ScaleFactor="1" Name="MeasureMultipleLinesLength" Description="Display in a message box the total length of selected lines." ID="4c152b15-a0c5-4609-bb96-5118f0951029" Category="Sasaki">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="Math" resolvedName="DSCore.Math" assemblyName="DSCoreNodes.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="3854796e-0915-4db1-8f08-e30920e9afd8" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Springs.Feet2Fraction" x="1687.72197606701" y="74.2546348103246" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <ID value="3784aae0-dd38-4cfd-ac57-a87ebe885a81" />
+      <Name value="Feet2Fraction" />
+      <Description value="Converts a decimal foot value to a fractional foot/inch string." />
+      <Inputs>
+        <Input value="number" />
+      </Inputs>
+      <Outputs>
+        <Output value="fraction(str)" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="3085cea5-58a0-4afc-a3a5-778275fc30b8" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Math.RoundUpToPrecision" x="1442.14675464972" y="58.0166266839092" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="True" />
+      <ID value="f66a0539-198d-4916-badc-39ea7a8509c1" />
+      <Name value="Math.RoundUpToPrecision" />
+      <Description value="Rounds a number *up* to a specified precision" />
+      <Inputs>
+        <Input value="dbl" />
+        <Input value="precision" />
+      </Inputs>
+      <Outputs>
+        <Output value="dbl" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="f0938532-1943-45da-a82c-a76810d0b4eb" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block - Feet2Inches" x="1119.73417484801" y="91.3408244045114" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="x/12;" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="05a6656b-4ade-458b-b85f-6b66c528d546" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Math.Sum" x="874.241569966855" y="20.6501159089885" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.Math.Sum@double[]">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="4b1ced67-a844-4c6d-9514-c9d83d60834e" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Curve.Length" x="441.37227187997" y="16.9491943821015" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Curve.Length">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="4a5c4a10-ae80-4531-b730-79b2a0bf272f" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Flatten" x="664.488821233718" y="18.4495964185825" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="BuiltIn" function="Flatten@var[]..[]">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="178534c5-aedc-4f46-a2e7-5393fa821502" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Element.Geometry" x="213.680297752639" y="19.6099698190955" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Elements.Element.Geometry">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="0c0c1885-b8a1-4a20-9cdd-6732043968db" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1988.13633903056" y="314.409766929099" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="MeasuredLength" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="b5fa4b37-65c5-4650-82e9-eb2bcca7bca4" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-54.5103857566765" y="20.4451038575668" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="SelectedCurves : Element" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="95f43473-4148-4980-ae81-3898603ee339" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-51.0593471810089" y="116.646884272997" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="RoundingPrecision: double = 1/64" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <PythonNodeModels.PythonNode guid="cc35945a-f2a1-4458-b2d9-67d24d686372" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1990.37104008474" y="78.5894435072995" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+#The inputs to this node will be stored as a list in the IN variables.
+dataEnteringNode = IN
+
+clr.AddReference('RevitAPIUI')
+from Autodesk.Revit.UI import TaskDialog
+
+x = IN[0]
+
+debug = x
+msg = str(debug) 
+msgbox = TaskDialog
+OUT = msgbox.Show("Total lenght", msg)
+</Script>
+    </PythonNodeModels.PythonNode>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="3854796e-0915-4db1-8f08-e30920e9afd8" start_index="0" end="0c0c1885-b8a1-4a20-9cdd-6732043968db" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="3854796e-0915-4db1-8f08-e30920e9afd8" start_index="0" end="cc35945a-f2a1-4458-b2d9-67d24d686372" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="3085cea5-58a0-4afc-a3a5-778275fc30b8" start_index="0" end="3854796e-0915-4db1-8f08-e30920e9afd8" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f0938532-1943-45da-a82c-a76810d0b4eb" start_index="0" end="3085cea5-58a0-4afc-a3a5-778275fc30b8" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="05a6656b-4ade-458b-b85f-6b66c528d546" start_index="0" end="3085cea5-58a0-4afc-a3a5-778275fc30b8" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="4b1ced67-a844-4c6d-9514-c9d83d60834e" start_index="0" end="4a5c4a10-ae80-4531-b730-79b2a0bf272f" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="4a5c4a10-ae80-4531-b730-79b2a0bf272f" start_index="0" end="05a6656b-4ade-458b-b85f-6b66c528d546" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="178534c5-aedc-4f46-a2e7-5393fa821502" start_index="0" end="4b1ced67-a844-4c6d-9514-c9d83d60834e" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b5fa4b37-65c5-4650-82e9-eb2bcca7bca4" start_index="0" end="178534c5-aedc-4f46-a2e7-5393fa821502" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="95f43473-4148-4980-ae81-3898603ee339" start_index="0" end="f0938532-1943-45da-a82c-a76810d0b4eb" end_index="0" portType="0" />
+  </Connectors>
+  <Notes>
+    <Dynamo.Graph.Notes.NoteModel guid="261e5337-3fad-498b-bc16-f8c21bf94ccb" text="Spring Nodes" x="1776.0926189095" y="24.060636417925" />
+    <Dynamo.Graph.Notes.NoteModel guid="1104b0e2-ee1a-4162-8f69-050c69bde857" text="Clockwork" x="1495.7341252945" y="10.8898886930399" />
+    <Dynamo.Graph.Notes.NoteModel guid="2346fedf-f504-41e3-a565-f611fceab88b" text="SCRIPT OUTPUT MIGHT INCLUDE DATA OR SIMPLY NOTIFICATION OF WHETHER THE SCRIPT RAN SUCCESSFULLY. HIGHLIGHTING THE OUTPUT OR FINAL STEP WILL HELP OTHER USERS TO QUICKLY IDENTIFY WHERE TO LOOK FOR RESULTS" x="1523.20348570315" y="-196.042125444529" />
+    <Dynamo.Graph.Notes.NoteModel guid="46d694d5-9cb0-4b44-81ea-517f70ef8407" text="DYNAMO PROCESS ORGANIZED AND GROUPED IN STEPS SO THAT OTHER USERS CAN UNDERSTAND THE LOGIC OF THE SCRIPT IN ORDER TO CUSTOMIZE THE SCRIPT OR REUSE PORTION OF THE LOGIC TO IMPLEMENT NEW WORKFLOWS" x="1181.62643582052" y="-197.017341416359" />
+    <Dynamo.Graph.Notes.NoteModel guid="b1f59693-49b8-4184-b564-821242e212a9" text="SCRIPT INPUT REQUIRED TO RUN THE SCRIPT. THESE INCLUDE INPUTS THAT ARE LESS LIKEY TO CHANGE FOR OTHER USERS TO IMPLEMENT THE SCRIPT ON THEIR PROJECT" x="867.47831976576" y="-186.352573823929" />
+    <Dynamo.Graph.Notes.NoteModel guid="4e5da5de-8a30-46aa-8816-bf65b60e2575" text="SCRIPT OUTPUT" x="1523.29359398956" y="-311.229764214619" />
+    <Dynamo.Graph.Notes.NoteModel guid="910efcb0-1fff-448f-9abf-e31c4fc2fe5f" text="PROCESS DATA" x="1183.60483058303" y="-312.204980186449" />
+    <Dynamo.Graph.Notes.NoteModel guid="c454e27d-3574-4232-8ba3-355958b7242d" text="SECONDARY INPUT (OPTIONAL)" x="871.09515921101" y="-315.540212594019" />
+    <Dynamo.Graph.Notes.NoteModel guid="b33afef1-6aaa-4170-9cc7-743d69549b5d" text="PRIMARY INPUT REQUIRED TO RUN THE SCRIPT. THESE INCLUDES INPUTS THAT OTHER USERS NEED TO PROVIDE IN ORDER TO ADAPT THE WORKFLOW TO THEIR PROJECTS" x="536.393314041291" y="-183.992557388189" />
+    <Dynamo.Graph.Notes.NoteModel guid="669acf0a-76e2-439e-bb4a-547b0d899156" text="PRIMARY INPUT" x="541.78147206517" y="-313.180196158279" />
+    <Dynamo.Graph.Notes.NoteModel guid="ce156af7-c197-47c0-81f5-e1fb255e3abd" text="CUSTOM NODE: MeasureMultipleLinesLength&#xD;&#xA;DESCRIPTION: Display in a message box the total length of selected lines&#xD;&#xA;&#xD;&#xA;REVIT VERSION 2017&#xD;&#xA;DYNAMO 1.3.0&#xD;&#xA;DEPENDENT PACKAGES: CLOCKWORK, SPRING NODES&#xD;&#xA;&#xD;&#xA;AUTHOR: Ilaria Giardiello&#xD;&#xA;DATETIME: 11/27/2017&#xD;&#xA;&#xD;&#xA;REFERENCE: N/A&#xD;&#xA;&#xD;&#xA;" x="209.549792105891" y="-315.239687704749" />
+  </Notes>
+  <Annotations>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="0069feef-f740-449e-8b2a-e878b145c812" annotationText="RoundUp to defined precision and express in fractional inches" left="1109.73417484801" top="-35.1101113069601" width="826.987801219005" height="212.126737990869" fontSize="30" InitialTop="10.8898886930399" InitialHeight="201.344788337513" TextblockHeight="36" backgrouund="#FFC1D676">
+      <Models ModelGuid="3854796e-0915-4db1-8f08-e30920e9afd8" />
+      <Models ModelGuid="3085cea5-58a0-4afc-a3a5-778275fc30b8" />
+      <Models ModelGuid="f0938532-1943-45da-a82c-a76810d0b4eb" />
+      <Models ModelGuid="261e5337-3fad-498b-bc16-f8c21bf94ccb" />
+      <Models ModelGuid="1104b0e2-ee1a-4162-8f69-050c69bde857" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="6e1e652b-d8ba-4a1e-b477-536e848f1356" annotationText="Measure curves total length" left="203.680297752639" top="-29.0508056178985" width="864.561272214215" height="142.700921526887" fontSize="30" InitialTop="16.9491943821015" InitialHeight="126.700921526887" TextblockHeight="36" backgrouund="#FFC1D676">
+      <Models ModelGuid="05a6656b-4ade-458b-b85f-6b66c528d546" />
+      <Models ModelGuid="4b1ced67-a844-4c6d-9514-c9d83d60834e" />
+      <Models ModelGuid="4a5c4a10-ae80-4531-b730-79b2a0bf272f" />
+      <Models ModelGuid="178534c5-aedc-4f46-a2e7-5393fa821502" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="259a3527-3a71-48ad-b355-2462a335d6c1" annotationText="INPUT" left="-64.5103857566765" top="-25.5548961424333" width="317.451038575668" height="210.20178041543" fontSize="30" InitialTop="20.4451038575668" InitialHeight="194.20178041543" TextblockHeight="36" backgrouund="#FFA4E1FF">
+      <Models ModelGuid="b5fa4b37-65c5-4650-82e9-eb2bcca7bca4" />
+      <Models ModelGuid="95f43473-4148-4980-ae81-3898603ee339" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="92deaa66-cb60-4c52-888a-466520d4d805" annotationText="Measured length" left="1978.13633903056" top="232.409766929099" width="165" height="150" fontSize="30" InitialTop="314.409766929099" InitialHeight="98" TextblockHeight="72" backgrouund="#FFFFAA45">
+      <Models ModelGuid="0c0c1885-b8a1-4a20-9cdd-6732043968db" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="e1b8575f-bae8-4b4d-a240-51fc7ff5a6e9" annotationText="Display message box" left="1980.37104008474" top="-39.4105564927005" width="144" height="186" fontSize="30" InitialTop="78.5894435072995" InitialHeight="98" TextblockHeight="108" backgrouund="#FFFFAA45">
+      <Models ModelGuid="cc35945a-f2a1-4458-b2d9-67d24d686372" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="eb8c077d-e6fe-4502-8a14-a29217aef839" annotationText="OUTPUT" left="1513.20348570315" top="-357.229764214619" width="312" height="263.18763877009" fontSize="30" InitialTop="-311.229764214619" InitialHeight="255.18763877009" TextblockHeight="36" backgrouund="#FFFFAA45">
+      <Models ModelGuid="2346fedf-f504-41e3-a565-f611fceab88b" />
+      <Models ModelGuid="4e5da5de-8a30-46aa-8816-bf65b60e2575" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="c68f1550-0518-4b40-be33-2a8f837b2f0b" annotationText="PROCESS" left="1171.62643582052" top="-358.204980186449" width="322.008271904157" height="263.18763877009" fontSize="30" InitialTop="-312.204980186449" InitialHeight="255.18763877009" TextblockHeight="36" backgrouund="#FFC1D676">
+      <Models ModelGuid="46d694d5-9cb0-4b44-81ea-517f70ef8407" />
+      <Models ModelGuid="910efcb0-1fff-448f-9abf-e31c4fc2fe5f" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="27a2f826-750e-4769-8ed1-aded9da82733" annotationText="INPUT" left="857.47831976576" top="-361.540212594019" width="302" height="263.18763877009" fontSize="30" InitialTop="-315.540212594019" InitialHeight="269.18763877009" TextblockHeight="36" backgrouund="#FFE8F7AD">
+      <Models ModelGuid="b1f59693-49b8-4184-b564-821242e212a9" />
+      <Models ModelGuid="c454e27d-3574-4232-8ba3-355958b7242d" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="5115993e-cc0b-4145-8bb3-382a373635fb" annotationText="INPUT" left="526.393314041291" top="-359.180196158279" width="317" height="263.18763877009" fontSize="30" InitialTop="-313.180196158279" InitialHeight="269.18763877009" TextblockHeight="36" backgrouund="#FFA4E1FF">
+      <Models ModelGuid="b33afef1-6aaa-4170-9cc7-743d69549b5d" />
+      <Models ModelGuid="669acf0a-76e2-439e-bb4a-547b0d899156" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="3339babd-7546-41c7-a436-bbc43ab80357" annotationText="GENERAL" left="199.549792105891" top="-361.239687704749" width="300" height="292" fontSize="30" InitialTop="-315.239687704749" InitialHeight="140" TextblockHeight="36" backgrouund="#FFD8D8D8">
+      <Models ModelGuid="ce156af7-c197-47c0-81f5-e1fb255e3abd" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+  </Annotations>
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17.5174427032471" eyeY="19.3615055084229" eyeZ="48.0519676208496" lookX="9.82887649536133" lookY="16.3277168273926" lookZ="-57.5656051635742" upX="-0.0790151059627533" upY="0.882947564125061" upZ="0.46277442574501" />
+  </Cameras>
+</Workspace>

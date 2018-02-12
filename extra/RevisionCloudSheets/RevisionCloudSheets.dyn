@@ -1,0 +1,89 @@
+<Workspace Version="1.3.0.875" X="-1406.38978300838" Y="52.7411251401259" zoom="0.698310300987032" ScaleFactor="1" Name="Home" Description="" RunType="Manual" RunPeriod="1000" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap />
+  <Elements>
+    <CoreNodeModels.Input.StringInput guid="5206b07d-966f-4318-8e88-44a94b77802e" type="CoreNodeModels.Input.StringInput" nickname="String - RevisionName" x="2215.2451649956" y="420.621965728417" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.String>BULLETIN-05</System.String>
+      <System.String value="BULLETIN-05" />
+    </CoreNodeModels.Input.StringInput>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="90d02048-171a-4af3-9aef-3fc1cac8ec3d" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="RevisionCloudSheets" x="2406.56981284679" y="451.383325702552" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <ID value="c2f6cfa5-da67-4b0f-a3bc-69bde402bc97" />
+      <Name value="RevisionCloudSheets" />
+      <Description value="Identify all sheets containing revision clouds for the selected revision" />
+      <Inputs>
+        <Input value="RevisionNumber" />
+      </Inputs>
+      <Outputs>
+        <Output value="ViewsContaingClouds" />
+        <Output value="SheetsContaingClouds_Nr" />
+        <Output value="SheetsContaingClouds_Name" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <CoreNodeModels.Watch guid="10cdc335-5715-4bb1-a1b5-5196348e8a52" type="CoreNodeModels.Watch" nickname="Watch" x="2912.53185577436" y="486.14560820673" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Watch>
+    <CoreNodeModels.Watch guid="4c24a494-da47-4e05-9990-ca59cc4277ab" type="CoreNodeModels.Watch" nickname="Watch" x="2411.68107499704" y="708.57508302526" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Watch>
+    <CoreNodeModels.Watch guid="28599612-244e-4216-9817-2833a3b83234" type="CoreNodeModels.Watch" nickname="Watch" x="3070.47200008153" y="487.34085705154" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Watch>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="5206b07d-966f-4318-8e88-44a94b77802e" start_index="0" end="90d02048-171a-4af3-9aef-3fc1cac8ec3d" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="90d02048-171a-4af3-9aef-3fc1cac8ec3d" start_index="0" end="4c24a494-da47-4e05-9990-ca59cc4277ab" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="90d02048-171a-4af3-9aef-3fc1cac8ec3d" start_index="1" end="10cdc335-5715-4bb1-a1b5-5196348e8a52" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="90d02048-171a-4af3-9aef-3fc1cac8ec3d" start_index="2" end="28599612-244e-4216-9817-2833a3b83234" end_index="0" portType="0" />
+  </Connectors>
+  <Notes>
+    <Dynamo.Graph.Notes.NoteModel guid="f830a9c5-378a-4117-995d-fdff42614c6c" text="SCRIPT OUTPUT MIGHT INCLUDE DATA OR SIMPLY NOTIFICATION OF WHETHER THE SCRIPT RAN SUCCESSFULLY. HIGHLIGHTING THE OUTPUT OR FINAL STEP WILL HELP OTHER USERS TO QUICKLY IDENTIFY WHERE TO LOOK FOR RESULTS" x="3504.11144464088" y="199.763031658749" />
+    <Dynamo.Graph.Notes.NoteModel guid="31cb3c5b-514d-4e4f-87a8-0dc78a13a3cb" text="DYNAMO PROCESS ORGANIZED AND GROUPED IN STEPS SO THAT OTHER USERS CAN UNDERSTAND THE LOGIC OF THE SCRIPT IN ORDER TO CUSTOMIZE THE SCRIPT OR REUSE PORTION OF THE LOGIC TO IMPLEMENT NEW WORKFLOWS" x="3162.53439475825" y="198.787815686919" />
+    <Dynamo.Graph.Notes.NoteModel guid="4343dea2-bd10-49ca-9af7-7a02367c5dd0" text="SCRIPT OUTPUT" x="3504.20155292729" y="84.5753928886594" />
+    <Dynamo.Graph.Notes.NoteModel guid="ca266e83-66d6-43da-84d4-40861453a81c" text="PROCESS DATA" x="3164.51278952076" y="83.6001769168294" />
+    <Dynamo.Graph.Notes.NoteModel guid="2106e7af-7b4b-4e17-8be3-507efe6adf7c" text="SCRIPT INPUT REQUIRED TO RUN THE SCRIPT. THESE INCLUDE INPUTS THAT ARE LESS LIKEY TO CHANGE FOR OTHER USERS TO IMPLEMENT THE SCRIPT ON THEIR PROJECT" x="2848.38627870349" y="209.452583279349" />
+    <Dynamo.Graph.Notes.NoteModel guid="0c82bf82-fe9d-4cd0-9322-c498b5fa8f8d" text="SECONDARY INPUT (OPTIONAL)" x="2852.00311814874" y="80.2649445092594" />
+    <Dynamo.Graph.Notes.NoteModel guid="26ae997b-094e-4b8e-afb0-a9cf1431c240" text="PRIMARY INPUT REQUIRED TO RUN THE SCRIPT. THESE INCLUDES INPUTS THAT OTHER USERS NEED TO PROVIDE IN ORDER TO ADAPT THE WORKFLOW TO THEIR PROJECTS" x="2517.30127297903" y="211.812599715089" />
+    <Dynamo.Graph.Notes.NoteModel guid="26a2a482-89f9-43ad-9169-adb55f970004" text="PRIMARY INPUT" x="2522.68943100291" y="82.6249609449994" />
+    <Dynamo.Graph.Notes.NoteModel guid="c77e6f13-4b62-49e7-8e1d-1ee4f7deacdc" text="CUSTOM NODE: RevisionSheetsList&#xD;&#xA;DESCRIPTION: Identify all sheets containing revision clouds for the selected revision.&#xD;&#xA;&#xD;&#xA;REVIT VERSION 2017&#xD;&#xA;DYNAMO 1.3.0&#xD;&#xA;DEPENDENT PACKAGES: CLOCKWORK&#xD;&#xA;&#xD;&#xA;AUTHOR: Gloriana Gonzales&#xD;&#xA;DATETIME: 05/22/2017&#xD;&#xA;LAST UPDATE: Ilaria Giardiello&#xD;&#xA;DATETIME: 02/08/2017&#xD;&#xA;&#xD;&#xA;REFERENCE: N/A" x="2201.92262216718" y="80.2649445092594" />
+  </Notes>
+  <Annotations>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="d053541a-06a0-49aa-835a-e6c9dbe59f3d" annotationText="OUTPUT" left="3494.11144464088" top="38.5753928886594" width="312" height="263.18763877009" fontSize="30" InitialTop="84.5753928886594" InitialHeight="255.18763877009" TextblockHeight="36" backgrouund="#FFFFAA45">
+      <Models ModelGuid="f830a9c5-378a-4117-995d-fdff42614c6c" />
+      <Models ModelGuid="4343dea2-bd10-49ca-9af7-7a02367c5dd0" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="a5e28f78-5055-4ea5-b28e-400094f4cb8a" annotationText="PROCESS" left="3152.53439475825" top="37.6001769168294" width="322.008271904157" height="263.18763877009" fontSize="30" InitialTop="83.6001769168294" InitialHeight="255.18763877009" TextblockHeight="36" backgrouund="#FFC1D676">
+      <Models ModelGuid="31cb3c5b-514d-4e4f-87a8-0dc78a13a3cb" />
+      <Models ModelGuid="ca266e83-66d6-43da-84d4-40861453a81c" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="45d408d5-cd61-4742-b1f4-58705d7c7a06" annotationText="INPUT" left="2838.38627870349" top="34.2649445092594" width="302" height="263.18763877009" fontSize="30" InitialTop="80.2649445092594" InitialHeight="269.18763877009" TextblockHeight="36" backgrouund="#FFE8F7AD">
+      <Models ModelGuid="2106e7af-7b4b-4e17-8be3-507efe6adf7c" />
+      <Models ModelGuid="0c82bf82-fe9d-4cd0-9322-c498b5fa8f8d" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="abeb89d6-3f65-400e-84a4-2e08d10d74b0" annotationText="INPUT" left="2507.30127297903" top="36.6249609449994" width="317" height="263.18763877009" fontSize="30" InitialTop="82.6249609449994" InitialHeight="269.18763877009" TextblockHeight="36" backgrouund="#FFA4E1FF">
+      <Models ModelGuid="26ae997b-094e-4b8e-afb0-a9cf1431c240" />
+      <Models ModelGuid="26a2a482-89f9-43ad-9169-adb55f970004" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="b2ef5c4c-ed57-4cf0-945e-d6771ce827f8" annotationText="GENERAL" left="2191.92262216718" top="34.2649445092594" width="314" height="278" fontSize="30" InitialTop="80.2649445092594" InitialHeight="140" TextblockHeight="36" backgrouund="#FFD8D8D8">
+      <Models ModelGuid="c77e6f13-4b62-49e7-8e1d-1ee4f7deacdc" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="c1a36673-8e54-44a9-ada0-72869dba4254" annotationText="INPUT" left="2205.2451649956" top="374.621965728417" width="168" height="114" fontSize="30" InitialTop="420.621965728417" InitialHeight="98" TextblockHeight="36" backgrouund="#FFA4E1FF">
+      <Models ModelGuid="5206b07d-966f-4318-8e88-44a94b77802e" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="d5355361-70af-4cbc-b1d2-36cc87c435ad" annotationText="SASAKI CUSTOM PACKAGE:&#xD;&#xA;RevisionCloudSheets" left="2396.56981284679" top="369.383325702552" width="418" height="227" fontSize="30" InitialTop="451.383325702552" InitialHeight="149" TextblockHeight="72" backgrouund="#FFC1D676">
+      <Models ModelGuid="90d02048-171a-4af3-9aef-3fc1cac8ec3d" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="1c65b59a-aec8-4512-8565-8bcb9925f6de" annotationText="REVISION SHEETS NR" left="2902.53185577436" top="368.14560820673" width="138.713333333333" height="297" fontSize="30" InitialTop="486.14560820673" InitialHeight="124" TextblockHeight="108" backgrouund="#FFFFAA45">
+      <Models ModelGuid="10cdc335-5715-4bb1-a1b5-5196348e8a52" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="ec40feb3-10d0-4ce2-b44b-d52328b1dac7" annotationText="REVISION VIEWS" left="2401.68107499704" top="662.57508302526" width="310" height="264" fontSize="30" InitialTop="708.57508302526" InitialHeight="408" TextblockHeight="36" backgrouund="#FFFFAA45">
+      <Models ModelGuid="4c24a494-da47-4e05-9990-ca59cc4277ab" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="57547e8a-d31a-4e12-a1c2-27f796e62491" annotationText="REVISION SHEETS NAMES" left="3060.47200008153" top="405.34085705154" width="310" height="261" fontSize="30" InitialTop="487.34085705154" InitialHeight="124" TextblockHeight="72" backgrouund="#FFFFAA45">
+      <Models ModelGuid="28599612-244e-4216-9817-2833a3b83234" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+  </Annotations>
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17.5174427032471" eyeY="19.3615055084229" eyeZ="48.0519676208496" lookX="9.82887649536133" lookY="16.3277168273926" lookZ="-57.5656051635742" upX="-0.0790151059627533" upY="0.882947564125061" upZ="0.46277442574501" />
+  </Cameras>
+</Workspace>

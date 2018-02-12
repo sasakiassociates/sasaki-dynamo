@@ -1,0 +1,91 @@
+<Workspace Version="1.2.1.3083" X="430.346433902023" Y="231.343439270844" zoom="0.662759780568406" Name="Home" Description="" RunType="Manual" RunPeriod="1000" HasRunWithoutCrash="False">
+  <NamespaceResolutionMap />
+  <Elements>
+    <CoreNodeModels.Input.Filename guid="6b212fd6-c1f7-48f0-aa7d-aa2b03267ccb" type="CoreNodeModels.Input.Filename" nickname="File Path" x="-360.627813517888" y="445.802646129993" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.String>.\2016-1205_Akamai%20Sheet%20list_edit.xlsx</System.String>
+      <HintPath>C:\Dynamo\PlaceViewOnSheet\2016-1205_Akamai Sheet list_edit.xlsx</HintPath>
+    </CoreNodeModels.Input.Filename>
+    <CoreNodeModels.Input.FileObject guid="4b9dd030-7a5f-412e-aebe-a0fc7415a205" type="CoreNodeModels.Input.FileObject" nickname="File.FromPath" x="-110.426888593096" y="446.905530230806" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Input.FileObject>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="2fa2054f-5a68-4b65-b844-2e3c3e84adcc" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.Transpose" x="289.283856904333" y="457.093001527623" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.Transpose@var[]..[]">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="3110b040-79e1-4420-a212-f1c32dd97203" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Excel.ReadFromFile" x="32.9845959686761" y="462.79964538603" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSOffice.dll" function="DSOffice.Excel.ReadFromFile@var,string,bool">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="True" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="55d098af-b34f-40a1-bb44-eeb25897e7cb" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="489.791382598332" y="460.684363075689" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" CodeText="x[0];&#xA;x[1];" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="0196a9da-6815-490a-b81a-0b529adb7442" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="-108.260320123241" y="533.348965704108" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="&quot;Sheet1&quot;;&#xA;true;" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="f72d589b-7bb8-4867-8684-f0c485b1ed48" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="PlaceViewOnSheet" x="893.018684369916" y="514.397390973284" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <PortInfo index="3" default="False" />
+      <ID value="d082d9d7-7ba3-400c-9c1b-ad1d86d909db" />
+      <Name value="PlaceViewOnSheet" />
+      <Description value="Place View on Sheet" />
+      <Inputs>
+        <Input value="ViewNames" />
+        <Input value="SheetNumbers" />
+        <Input value="LocationX" />
+        <Input value="LocationY" />
+      </Inputs>
+      <Outputs>
+        <Output value="PlacedViews" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <CoreNodeModels.Watch guid="8caf9467-e8f0-4be2-a529-75a8b2650ace" type="CoreNodeModels.Watch" nickname="Watch" x="1210.27828117341" y="513.336067769745" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Watch>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="a8f03b5d-842c-401a-aaa1-290e6dc43575" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="709.867822632793" y="684.243690226308" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="100;&#xA;100;" ShouldFocus="false" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="6b212fd6-c1f7-48f0-aa7d-aa2b03267ccb" start_index="0" end="4b9dd030-7a5f-412e-aebe-a0fc7415a205" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="4b9dd030-7a5f-412e-aebe-a0fc7415a205" start_index="0" end="3110b040-79e1-4420-a212-f1c32dd97203" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="2fa2054f-5a68-4b65-b844-2e3c3e84adcc" start_index="0" end="55d098af-b34f-40a1-bb44-eeb25897e7cb" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="3110b040-79e1-4420-a212-f1c32dd97203" start_index="0" end="2fa2054f-5a68-4b65-b844-2e3c3e84adcc" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="55d098af-b34f-40a1-bb44-eeb25897e7cb" start_index="0" end="f72d589b-7bb8-4867-8684-f0c485b1ed48" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="55d098af-b34f-40a1-bb44-eeb25897e7cb" start_index="1" end="f72d589b-7bb8-4867-8684-f0c485b1ed48" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0196a9da-6815-490a-b81a-0b529adb7442" start_index="0" end="3110b040-79e1-4420-a212-f1c32dd97203" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0196a9da-6815-490a-b81a-0b529adb7442" start_index="1" end="3110b040-79e1-4420-a212-f1c32dd97203" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f72d589b-7bb8-4867-8684-f0c485b1ed48" start_index="0" end="8caf9467-e8f0-4be2-a529-75a8b2650ace" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a8f03b5d-842c-401a-aaa1-290e6dc43575" start_index="0" end="f72d589b-7bb8-4867-8684-f0c485b1ed48" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a8f03b5d-842c-401a-aaa1-290e6dc43575" start_index="1" end="f72d589b-7bb8-4867-8684-f0c485b1ed48" end_index="3" portType="0" />
+  </Connectors>
+  <Notes>
+    <Dynamo.Graph.Notes.NoteModel guid="1dac6549-2772-4a54-ad4e-2f8112242dab" text="Excel sheet without column headers" x="-358.108028146639" y="403.083921110707" />
+    <Dynamo.Graph.Notes.NoteModel guid="259a954b-a581-4c03-b24d-e4c6e4d05e0f" text="LocationX: x coordinate of the view center on the sheet&#xD;&#xA;LocationY: y coordinate of the view center on the sheet" x="406.729222165763" y="689.793942479825" />
+    <Dynamo.Graph.Notes.NoteModel guid="8b983f5f-a443-4d02-99f3-69ec31a14408" text="PlacedViews: views which are successfully placed on the corresponding sheets" x="1209.23898280382" y="458.616963998139" />
+    <Dynamo.Graph.Notes.NoteModel guid="c6d605c3-1a99-401a-bb66-c0283a4eddc3" text="ViewNames: a list of view names, which are matched to the corresponding sheet numbers." x="487.410862254645" y="344.283316179402" />
+    <Dynamo.Graph.Notes.NoteModel guid="6f32c386-5d3f-4147-8678-0faebe9aa8d1" text="SheetNumbers: a list of sheet numbers, which are matched to the corresponding view names." x="487.643419166877" y="406.034166312885" />
+  </Notes>
+  <Annotations>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="0c53ebe8-5dc5-4319-bd22-0f7054af5e27" annotationText="location" left="396.729222165763" top="654.243690226308" width="399.138600467031" height="123.550252253517" fontSize="14" InitialTop="684.243690226308" InitialHeight="145.550252253517" TextblockHeight="20" backgrouund="#FFC1D676">
+      <Models ModelGuid="a8f03b5d-842c-401a-aaa1-290e6dc43575" />
+      <Models ModelGuid="259a954b-a581-4c03-b24d-e4c6e4d05e0f" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="a7b05909-f55d-4c93-871d-459df3124dcf" annotationText="views placed successfully" left="1199.23898280382" top="428.616963998139" width="314" height="178.719103771606" fontSize="14" InitialTop="458.616963998139" InitialHeight="178.719103771606" TextblockHeight="20" backgrouund="#FFC1D676">
+      <Models ModelGuid="8caf9467-e8f0-4be2-a529-75a8b2650ace" />
+      <Models ModelGuid="8b983f5f-a443-4d02-99f3-69ec31a14408" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="42f513c1-d8f6-4b73-8dec-8c4469f54992" annotationText="Get SheetNumbers &amp; ViewNames from Excel" left="-370.627813517888" top="314.283316179402" width="1165.03867577253" height="322.065649524706" fontSize="14" InitialTop="344.283316179402" InitialHeight="250.145897937839" TextblockHeight="20" backgrouund="#FFC1D676">
+      <Models ModelGuid="6b212fd6-c1f7-48f0-aa7d-aa2b03267ccb" />
+      <Models ModelGuid="4b9dd030-7a5f-412e-aebe-a0fc7415a205" />
+      <Models ModelGuid="2fa2054f-5a68-4b65-b844-2e3c3e84adcc" />
+      <Models ModelGuid="3110b040-79e1-4420-a212-f1c32dd97203" />
+      <Models ModelGuid="55d098af-b34f-40a1-bb44-eeb25897e7cb" />
+      <Models ModelGuid="0196a9da-6815-490a-b81a-0b529adb7442" />
+      <Models ModelGuid="1dac6549-2772-4a54-ad4e-2f8112242dab" />
+      <Models ModelGuid="6f32c386-5d3f-4147-8678-0faebe9aa8d1" />
+      <Models ModelGuid="c6d605c3-1a99-401a-bb66-c0283a4eddc3" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+  </Annotations>
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>
